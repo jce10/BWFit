@@ -1,0 +1,104 @@
+ANGLE: 20
+ROOTFILE: rootfiles/hl20_angcorr_outfile.root
+OUTPUT: outputs/bwsingf_hl20_outfile.root
+TREE: singles_tree
+BRANCH: singles_fppos
+TITLE: 12C_dp_13C_20deg
+CALIB_SLOPE: -0.009055
+CALIB_INTERCEPT: 8.15434
+
+NUM_STATES: 8
+TOG_REL: 0
+TOG_INTERFERENCE: 1
+WIDTH_PERC: 1.00
+TRAPPED_INDEX: 4
+SUPERRAD_INDEX: 5
+
+FULLMIN: 5.6
+FULLMAX: 11.0
+FITMIN:  6.6
+FITMAX:  9.9
+FITBINS: 250
+GRAPHPOINTS: 5000
+
+DELTA:     0.00
+DELTA_MIN: 0.00
+DELTA_MAX: 4.00
+
+BACKGROUND_TYPE: linear
+
+BG_E:      8.0
+BG_E_MIN:  8.0
+BG_E_MAX:  8.0
+
+BG_A0:      1000.0
+BG_A0_MIN:     0.0
+BG_A0_MAX:  5000.0
+
+BG_A1:         0.0
+BG_A1_MIN:  -500.0
+BG_A1_MAX:   500.0
+
+STATE0
+FAC: 50
+M:   6.810
+G:   0.125
+IS_BW: 0
+FIT_M: 0
+FIT_G: 0
+
+STATE1
+FAC: 50
+M:   7.430
+G:   0.065
+IS_BW: 0
+FIT_M: 0
+FIT_G: 0
+
+STATE2
+FAC: 50
+M:   7.547
+G:   0.100
+IS_BW: 0
+FIT_M: 0
+FIT_G: 0
+
+STATE3
+FAC: 50
+M:   7.610
+G:   0.100
+IS_BW: 0
+FIT_M: 1
+FIT_G: 0
+
+STATE4
+FAC: 50
+M:   7.688
+G:   0.100
+IS_BW: 1
+FIT_M: 0
+FIT_G: 1
+
+STATE5
+FAC: 950
+M:   8.220
+G:   4.500
+IS_BW: 1
+FIT_M: 1
+FIT_G: 1
+
+STATE6
+FAC: 50
+M:   9.499
+G:   0.100
+IS_BW: 0
+FIT_M: 1
+FIT_G: 1
+
+STATE7
+FAC: 26
+M:   9.894
+G:   0.075
+IS_BW: 0
+FIT_M: 1
+FIT_G: 1
