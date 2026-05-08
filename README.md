@@ -1,4 +1,4 @@
-# Breit-Wigner Fitter Refactor: Milestone 1
+# Breit-Wigner Fitter 
 
 This is the first modular refactor of the original `bw_singles_fitter.cpp` written by K. Hanselman.
 
