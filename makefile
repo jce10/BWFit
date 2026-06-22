@@ -13,7 +13,8 @@ OBJS = \
   $(OBJDIR)/FitModel.o \
   $(OBJDIR)/FitResults.o \
   $(OBJDIR)/SpectrumIO.o \
-  $(OBJDIR)/Plotting.o
+  $(OBJDIR)/Plotting.o \
+  $(OBJDIR)/UpperLimit.o
 
 $(BINDIR)/bwsingf: $(OBJS)
 	@mkdir -p $(BINDIR)

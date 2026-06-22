@@ -1,12 +1,14 @@
 #include "Plotting.h"
 #include "LineShapes.h"
 
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <memory>
 #include <vector>
 
 #include <TCanvas.h>
+#include <TColor.h>
 #include <TFile.h>
 #include <TGraph.h>
 #include <TGraphErrors.h>
@@ -14,9 +16,8 @@
 #include <TLegend.h>
 #include <TLine.h>
 #include <TPad.h>
-// #include <TColor.h>
-// #include <TStyle.h>
 #include <TString.h>
+#include <TStyle.h>
 
 namespace bwfit {
 
@@ -95,7 +96,16 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
   bg_gr.Draw("L same");
 
   std::vector<std::unique_ptr<TF1>> components;
-  for (int i = 0; i < static_cast<int>(cfg.states.size()); ++i) {
+
+  // Use a ROOT colormap to assign distinct component colors automatically.
+  // This avoids hard-coding a finite palette and scales cleanly with the
+  // number of fitted states. The trapped and superradiant states are then
+  // highlighted with fixed colors so they remain easy to identify angle-to-angle.
+  gStyle->SetPalette(kViridis);
+  const int nstates = static_cast<int>(cfg.states.size());
+  const int ncolors = TColor::GetNumberOfColors();
+
+  for (int i = 0; i < nstates; ++i) {
     TF1* comp = nullptr;
     if (cfg.states[i].is_bw && cfg.use_relativistic)
       comp = new TF1(Form("state_%d", i), BreitWignerRelRoot, cfg.fullmin, cfg.fullmax, 3);
@@ -105,7 +115,22 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
       comp = new TF1(Form("state_%d", i), GaussianRoot, cfg.fullmin, cfg.fullmax, 3);
 
     comp->SetParameters(p[3 * i], p[3 * i + 1], p[3 * i + 2]);
-    comp->SetLineColor(kRed);
+
+    int color = kRed;
+    if (ncolors > 0) {
+      const int denom = std::max(1, nstates - 1);
+      const int palette_index = static_cast<int>(
+          std::round(static_cast<double>(i) * static_cast<double>(ncolors - 1) /
+                     static_cast<double>(denom)));
+      color = TColor::GetColorPalette(palette_index);
+    }
+
+    comp->SetLineColor(color);
+
+    // Keep the important physics components consistent across all angles.
+    if (i == cfg.trapped_index) comp->SetLineColor(kBlue + 2);
+    if (i == cfg.superrad_index) comp->SetLineColor(kRed + 1);
+
     comp->SetLineWidth(2);
     comp->SetNpx(cfg.graph_points);
     comp->Draw("same");

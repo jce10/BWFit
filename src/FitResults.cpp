@@ -1,4 +1,6 @@
 #include "FitResults.h"
+#include <iomanip>
+#include <iostream>
 
 
 namespace bwfit {
@@ -6,34 +8,86 @@ void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
 
   std::cout << "\n=== Fit Parameters ===\n";
 
+  // for (int i = 0; i < static_cast<int>(cfg.states.size()); ++i) {
+  //   const int i_fac = 3 * i + 0;
+  //   const int i_M   = 3 * i + 1;
+  //   const int i_G   = 3 * i + 2;
+
+  //   std::cout << "State " << i << ":\n";
+  //   std::cout << "  Yield = " << fit.GetParameter(i_fac)
+  //             << " +/- " << fit.GetParError(i_fac) << "\n";
+  //   std::cout << "  M     = " << fit.GetParameter(i_M)
+  //             << " +/- " << fit.GetParError(i_M) << " MeV\n";
+  //   std::cout << "  G     = " << fit.GetParameter(i_G)
+  //             << " +/- " << fit.GetParError(i_G) << " MeV\n";
+  // }
+
+  std::cout << std::fixed << std::showpoint << std::setprecision(4);
+
   for (int i = 0; i < static_cast<int>(cfg.states.size()); ++i) {
     const int i_fac = 3 * i + 0;
     const int i_M   = 3 * i + 1;
     const int i_G   = 3 * i + 2;
 
-    std::cout << "State " << i << ":\n";
-    std::cout << "  Yield = " << fit.GetParameter(i_fac)
+    const auto& st = cfg.states[i];
+
+    std::cout << "State " << i
+              << (st.is_bw ? " (Breit-Wigner)" : " (Gaussian)") << ":\n";
+
+    std::cout << "  Yield: "
+              << "set = " << st.fac
+              << " | fit = " << fit.GetParameter(i_fac)
               << " +/- " << fit.GetParError(i_fac) << "\n";
-    std::cout << "  M     = " << fit.GetParameter(i_M)
-              << " +/- " << fit.GetParError(i_M) << " MeV\n";
-    std::cout << "  G     = " << fit.GetParameter(i_G)
-              << " +/- " << fit.GetParError(i_G) << " MeV\n";
+
+    std::cout << "  M:     "
+              << "set = " << st.M << " MeV"
+              << " | fit = " << fit.GetParameter(i_M)
+              << " +/- " << fit.GetParError(i_M) << " MeV"
+              << (st.fit_M ? "" : "  *fixed") << "\n";
+
+    std::cout << "  G:     "
+              << "set = " << st.G << " MeV"
+              << " | fit = " << fit.GetParameter(i_G)
+              << " +/- " << fit.GetParError(i_G) << " MeV"
+              << (st.fit_G ? "" : "  *fixed") << "\n\n";
   }
 
   std::cout << "\nInterference:\n";
   std::cout << "  phase = " << fit.GetParameter(cfg.PhaseIndex())
             << " +/- " << fit.GetParError(cfg.PhaseIndex()) << "\n";
 
-  std::cout << "\nBackground:\n";
-  std::cout << "  E0 = " << fit.GetParameter(cfg.BgEIndex())
+
+
+  // std::cout << "\nBackground:\n";
+  // std::cout << "  E0 = " << fit.GetParameter(cfg.BgEIndex())
+  //           << " +/- " << fit.GetParError(cfg.BgEIndex()) << "\n";
+  // std::cout << "  A0 = " << fit.GetParameter(cfg.BgA0Index())
+  //           << " +/- " << fit.GetParError(cfg.BgA0Index()) << "\n";
+  // std::cout << "  A1 = " << fit.GetParameter(cfg.BgA1Index())
+  //           << " +/- " << fit.GetParError(cfg.BgA1Index()) << "\n";
+
+  // if (cfg.background_type == BackgroundType::Quadratic) {
+  //   std::cout << "  A2 = " << fit.GetParameter(cfg.BgA2Index())
+  //             << " +/- " << fit.GetParError(cfg.BgA2Index()) << "\n";
+  // }
+
+  std::cout << "\nBackground (" << ToString(cfg.background_type) << "):\n";
+
+  std::cout << "  E0: set = " << cfg.bg_e.value
+            << " | fit = " << fit.GetParameter(cfg.BgEIndex())
             << " +/- " << fit.GetParError(cfg.BgEIndex()) << "\n";
-  std::cout << "  A0 = " << fit.GetParameter(cfg.BgA0Index())
+
+  std::cout << "  A0: set = " << cfg.bg_a0.value
+            << " | fit = " << fit.GetParameter(cfg.BgA0Index())
             << " +/- " << fit.GetParError(cfg.BgA0Index()) << "\n";
-  std::cout << "  A1 = " << fit.GetParameter(cfg.BgA1Index())
+
+  std::cout << "  A1: set = " << cfg.bg_a1.value
+            << " | fit = " << fit.GetParameter(cfg.BgA1Index())
             << " +/- " << fit.GetParError(cfg.BgA1Index()) << "\n";
 
   if (cfg.background_type == BackgroundType::Quadratic) {
-    std::cout << "  A2 = " << fit.GetParameter(cfg.BgA2Index())
+    std::cout << "  A2: set = " << cfg.bg_a2.value
+              << " | fit = " << fit.GetParameter(cfg.BgA2Index())
               << " +/- " << fit.GetParError(cfg.BgA2Index()) << "\n";
   }
 

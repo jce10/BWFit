@@ -34,3 +34,17 @@ The executable accepts a config path:
 ```
 
 A sample config file and input ROOT file to 
+
+
+## How the fitter works
+1. Read a user-supplied configuration file.
+2. Load a ROOT tree containing focal-plane positions.
+3. Convert focal-plane position to excitation energy using a linear calibration.
+4. Histogram the excitation spectrum.
+5. Construct a model consisting of:
+    a. Gaussian and/or Breit-Wigner states,
+    b. optional trapped-superradiant interference,
+    c. linear or quadratic background.
+6. Fit the spectrum using ROOT's Minuit2 minimizer.
+7. Extract fitted yields and uncertainties.
+8. Produce publication-quality plots and residuals.
