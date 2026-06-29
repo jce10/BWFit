@@ -49,6 +49,7 @@ FitConfig ReadConfig(const std::string& path) {
   int rel = 0;
   int interf = 1;
 
+  // read config file line by line
   ReadLabeled(input, cfg.angle_deg);
   input >> label >> cfg.rootfile;
   input >> label >> cfg.output_rootfile;
@@ -58,7 +59,7 @@ FitConfig ReadConfig(const std::string& path) {
   ReadLabeled(input, cfg.calib_slope);
   ReadLabeled(input, cfg.calib_intercept);
 
-  ReadLabeled(input, num_states);
+  ReadLabeled(input, num_states); 
   ReadLabeled(input, rel);
   ReadLabeled(input, interf);
   ReadLabeled(input, cfg.width_perc);
@@ -72,8 +73,8 @@ FitConfig ReadConfig(const std::string& path) {
   ReadLabeled(input, cfg.fit_bins);
   ReadLabeled(input, cfg.graph_points);
 
-  cfg.use_relativistic = (rel != 0);
-  cfg.use_interference = (interf != 0);
+  cfg.use_relativistic = (rel != 0); // relativistic 0 = off, 1 = on
+  cfg.use_interference = (interf != 0); // interference 0 = off, 1 = on
 
   ReadLabeled(input, cfg.phase.value);
   ReadLabeled(input, cfg.phase.min);

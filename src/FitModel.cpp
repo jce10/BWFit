@@ -13,6 +13,8 @@ FitModel::FitModel(const FitConfig& cfg, bool interference_enabled)
 }
 
 double FitModel::operator()(double* var_arr, double* param_arr) {
+  
+
   const double E = var_arr[0];
   double return_val = 0.0;
 
@@ -27,41 +29,54 @@ double FitModel::operator()(double* var_arr, double* param_arr) {
 
     if (cfg_.states[i].is_bw && cfg_.use_relativistic)
       return_val += BreitWignerRel(E, M[i], G[i], fac[i]);
+
     else if (cfg_.states[i].is_bw && !cfg_.use_relativistic)
       return_val += BreitWigner(E, M[i], G[i], fac[i]);
+
     else
       return_val += Gaussian(E, M[i], G[i], fac[i]);
   }
+
 
   const double phase = param_arr[cfg_.PhaseIndex()];
   const double bg_e  = param_arr[cfg_.BgEIndex()];
   const double bg_a0 = param_arr[cfg_.BgA0Index()];
   const double bg_a1 = param_arr[cfg_.BgA1Index()];
 
+
   if (cfg_.background_type == BackgroundType::Quadratic) {
     const double bg_a2 = param_arr[cfg_.BgA2Index()];
     return_val += QuadraticBackground(E, bg_e, bg_a0, bg_a1, bg_a2);
-  } else {
+  } 
+  else {
     return_val += LinearBackground(E, bg_e, bg_a0, bg_a1);
   }
 
   if (interference_enabled_ && cfg_.use_interference) {
     const int TI = cfg_.trapped_index;
     const int SI = cfg_.superrad_index;
+
     if (TI >= 0 && TI < num_states_ && SI >= 0 && SI < num_states_) {
       double X = 0.0, Y = 0.0, F = 0.0;
+      
       if (!cfg_.use_relativistic) {
         X = (E - M[TI]) * (E - M[SI]) + G[TI] * G[SI] / 4.0;
+
         Y = (G[TI] / 2.0) * (E - M[SI]) - (G[SI] / 2.0) * (E - M[TI]);
+        
         F = 2.0 * std::sqrt(fac[TI] * fac[SI] * G[TI] * G[SI]) / (2.0 * M_PI) *
             (X * std::cos(phase) + Y * std::sin(phase)) / (X * X + Y * Y);
-      } else {
+      } 
+      else {
         X = (E * E - M[TI] * M[TI]) * (E * E - M[SI] * M[SI]) +
             M[TI] * M[SI] * G[TI] * G[SI];
+
         Y = M[TI] * G[TI] * (E * E - M[SI] * M[SI]) -
             M[SI] * G[SI] * (E * E - M[TI] * M[TI]);
+
         const double kT = KFactor(M[TI], G[TI]);
         const double kS = KFactor(M[SI], G[SI]);
+
         F = 2.0 * std::sqrt(fac[TI] * fac[SI] * kT * kS) *
             (X * std::cos(phase) + Y * std::sin(phase)) / (X * X + Y * Y);
       }

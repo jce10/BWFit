@@ -50,9 +50,9 @@ int main(int argc, char* argv[]) {
     std::cout << "\nChi2/NDF = " << fit.GetChisquare() / fit.GetNDF() << "\n\n";
     PrintFitParameters(fit, cfg);
 
-    // -------------------------------------------------------------------------
+    // ------------------------------------------------------------------------- //
     // Upper limit scan for the superradiant state
-    // -------------------------------------------------------------------------
+    // ------------------------------------------------------------------------- //
 
     // std::vector<double> yields = {
     //   0.0, 0.1, 0.5, 1.0, 2.0,
@@ -60,6 +60,8 @@ int main(int argc, char* argv[]) {
     // };
     // auto scan = ScanUpperLimit(*hist, cfg, fitted, yields, false);
     // PrintUpperLimitScan(scan);
+
+    // ------------------------------------------------------------------------- //
 
     TF1 full_fit("bw_fit_full", model, cfg.fullmin, cfg.fullmax, cfg.NumParams());
     full_fit.SetParameters(fitted.data());
