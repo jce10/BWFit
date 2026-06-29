@@ -7,7 +7,7 @@ namespace bwfit {
 void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
 
   std::cout << "\n=== Fit Parameters ===\n";
-
+  // print without user sets
   // for (int i = 0; i < static_cast<int>(cfg.states.size()); ++i) {
   //   const int i_fac = 3 * i + 0;
   //   const int i_M   = 3 * i + 1;
@@ -59,7 +59,7 @@ void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
             << " +/- " << fit.GetParError(cfg.PhaseIndex()) << "\n";
 
 
-
+  // print without user sets
   // std::cout << "\nBackground:\n";
   // std::cout << "  E0 = " << fit.GetParameter(cfg.BgEIndex())
   //           << " +/- " << fit.GetParError(cfg.BgEIndex()) << "\n";

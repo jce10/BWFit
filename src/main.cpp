@@ -51,8 +51,8 @@ int main(int argc, char* argv[]) {
     PrintFitParameters(fit, cfg);
 
     // -------------------------------------------------------------------------
-// Upper limit scan for the superradiant state
-// -------------------------------------------------------------------------
+    // Upper limit scan for the superradiant state
+    // -------------------------------------------------------------------------
 
     // std::vector<double> yields = {
     //   0.0, 0.1, 0.5, 1.0, 2.0,
