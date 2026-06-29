@@ -1,13 +1,13 @@
 ANGLE: 10
 ROOTFILE: rootfiles/9Be6Lid_10deg.root
-OUTPUT: outputs/bwsingf_9Be6Lid_10deg.root
+OUTPUT: outputs/9Be6Lid_10deg_calib.root
 TREE: singles_tree
 BRANCH: singles_fppos
-TITLE: 9Be6Lid_10deg
+TITLE: 9Be6Lid_10deg_calib
 CALIB_SLOPE: -0.0224
 CALIB_INTERCEPT: 9.18
 
-NUM_STATES: 13
+NUM_STATES: 12
 TOG_REL: 0
 TOG_INTERFERENCE: 0
 WIDTH_PERC: 1.00
@@ -73,21 +73,13 @@ FIT_G: 1
 
 STATE4
 FAC: 100
-M:   8.220
-G:   1.9
-IS_BW: 0
-FIT_M: 0
-FIT_G: 0
-
-STATE5
-FAC: 100
 M:   8.67
 G:   0.250
 IS_BW: 0
-FIT_M: 0
-FIT_G: 0
+FIT_M: 1
+FIT_G: 1
 
-STATE6
+STATE5
 FAC: 100
 M:   8.874
 G:   0.200
@@ -95,7 +87,7 @@ IS_BW: 0
 FIT_M: 1
 FIT_G: 1
 
-STATE7
+STATE6
 FAC: 100
 M:   9.368
 G:   0.100
@@ -103,7 +95,7 @@ IS_BW: 0
 FIT_M: 1
 FIT_G: 1
 
-STATE8
+STATE7
 FAC: 100
 M:   9.650
 G:   0.100
@@ -111,7 +103,7 @@ IS_BW: 0
 FIT_M: 1
 FIT_G: 1
 
-STATE9
+STATE8
 FAC: 500
 M:   9.763
 G:   0.100
@@ -119,26 +111,26 @@ IS_BW: 0
 FIT_M: 1
 FIT_G: 1
 
-STATE10
+STATE9
 FAC: 100
 M:   10.43
 G:   0.100
 IS_BW: 0
-FIT_M: 0
+FIT_M: 1
 FIT_G: 1
 
-STATE11
+STATE10
 FAC: 200
 M:   10.653
 G:   0.250
 IS_BW: 0
-FIT_M: 0
+FIT_M: 1
 FIT_G: 1
 
-STATE12
+STATE11
 FAC: 100
 M:   10.897
 G:   0.150
 IS_BW: 0
-FIT_M: 0
-FIT_G: 0
+FIT_M: 1
+FIT_G: 1

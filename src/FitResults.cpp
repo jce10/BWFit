@@ -30,6 +30,8 @@ void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
     const int i_G   = 3 * i + 2;
 
     const auto& st = cfg.states[i];
+    const char* M_status = st.fit_M ? "FLOAT" : "FIXED";
+    const char* G_status = st.fit_G ? "FLOAT" : "FIXED";
 
     std::cout << "State " << i
               << (st.is_bw ? " (Breit-Wigner)" : " (Gaussian)") << ":\n";
@@ -43,13 +45,13 @@ void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
               << "set = " << st.M << " MeV"
               << " | fit = " << fit.GetParameter(i_M)
               << " +/- " << fit.GetParError(i_M) << " MeV"
-              << (st.fit_M ? "" : "  *fixed") << "\n";
+              << " [" << M_status << "]" << "\n";
 
     std::cout << "  G:     "
               << "set = " << st.G << " MeV"
               << " | fit = " << fit.GetParameter(i_G)
               << " +/- " << fit.GetParError(i_G) << " MeV"
-              << (st.fit_G ? "" : "  *fixed") << "\n\n";
+              << " [" << G_status << "]" << "\n\n";
   }
 
   std::cout << "\nInterference:\n";

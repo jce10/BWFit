@@ -1,9 +1,9 @@
 ANGLE: 20
 ROOTFILE: rootfiles/12Cdp_20deg.root
-OUTPUT: outputs/bwsingf_12C_dp_20deg.root
+OUTPUT: outputs/20deg_freeC_freeG.root
 TREE: singles_tree
 BRANCH: singles_fppos
-TITLE: 12Cdp_20deg
+TITLE: 20deg_freeC_freeG
 CALIB_SLOPE: -0.00852
 CALIB_INTERCEPT: 8.120
 

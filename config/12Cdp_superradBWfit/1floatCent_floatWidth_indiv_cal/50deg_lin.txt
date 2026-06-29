@@ -1,11 +1,11 @@
-ANGLE: 45
-ROOTFILE: rootfiles/12Cdp_45deg.root
-OUTPUT: outputs/bwsingf_12C_dp_45deg.root
+ANGLE: 50
+ROOTFILE: rootfiles/12Cdp_50deg.root
+OUTPUT: outputs/50deg_freeC_freeG.root
 TREE: singles_tree
 BRANCH: singles_fppos
-TITLE: 12Cdp_45deg
-CALIB_SLOPE: -0.00819
-CALIB_INTERCEPT: 8.04
+TITLE: 50deg_freeC_freeG
+CALIB_SLOPE: -0.00821
+CALIB_INTERCEPT: 7.9
 
 NUM_STATES: 8
 TOG_REL: 0
@@ -16,8 +16,8 @@ SUPERRAD_INDEX: 4
 
 FULLMIN: 5.6
 FULLMAX: 11.0
-FITMIN:  6.77
-FITMAX:  9.60
+FITMIN:  6.85
+FITMAX:  9.63
 FITBINS: 250
 GRAPHPOINTS: 5000
 
@@ -41,32 +41,32 @@ BG_A1_MAX:   500.0
 
 STATE0
 FAC: 50
-M:   6.810
+M:   6.900
 G:   0.040
 IS_BW: 0
 FIT_M: 1
 FIT_G: 0
 
 STATE1
-FAC: 10
-M:   7.4650
+FAC: 100
+M:   7.510
 G:   0.030
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
 
 STATE2
-FAC: 10
-M:   7.520
+FAC: 50
+M:   7.568
 G:   0.030
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
 
 STATE3
-FAC: 10
-M:   7.66
-G:   0.050
+FAC: 100
+M:   7.6800
+G:   0.200
 IS_BW: 1
 FIT_M: 1
 FIT_G: 1
@@ -81,23 +81,23 @@ FIT_G: 1
 
 STATE5
 FAC: 100
-M:   8.80
-G:   0.300
+M:   8.720
+G:   0.400
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
 
 STATE6
-FAC: 50
-M:   9.280
+FAC: 100
+M:   9.153
 G:   0.100
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
 
-STATE7
-FAC: 50
-M:   9.499
+STATE6
+FAC: 100
+M:   9.539
 G:   0.050
 IS_BW: 0
 FIT_M: 0

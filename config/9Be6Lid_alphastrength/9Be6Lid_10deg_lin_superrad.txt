@@ -1,9 +1,9 @@
 ANGLE: 10
 ROOTFILE: rootfiles/9Be6Lid_10deg.root
-OUTPUT: outputs/bwsingf_9Be6Lid_10deg_superrad.root
+OUTPUT: outputs/9Be6Lid_10deg_superrad.root
 TREE: singles_tree
 BRANCH: singles_fppos
-TITLE: 9Be6Lid_10deg
+TITLE: 9Be6Lid_10deg_superrad
 CALIB_SLOPE: -0.0224
 CALIB_INTERCEPT: 9.18
 
@@ -58,8 +58,8 @@ FIT_G: 0
 
 STATE2
 FAC: 100
-M:   8.220
-G:   1.9
+M:   8.200
+G:   1.100
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0

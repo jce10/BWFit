@@ -1,9 +1,9 @@
 ANGLE: 50
 ROOTFILE: rootfiles/12Cdp_50deg.root
-OUTPUT: outputs/bwsingf_12Cdp_50deg_fixedC_fixedG.root
+OUTPUT: outputs/50deg_fixedC_fixedG.root
 TREE: singles_tree
 BRANCH: singles_fppos
-TITLE: 12Cdp_50deg_fixedC_fixedG
+TITLE: 50deg_fixedC_fixedG
 CALIB_SLOPE: -0.00821
 CALIB_INTERCEPT: 7.9
 
