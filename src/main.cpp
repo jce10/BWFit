@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
+#include <string>
 #include <vector>
 
 #include <TF1.h>
@@ -42,13 +43,26 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Fitting...\n";
     TFitResultPtr result = hist->Fit(&fit, "RS", "", cfg.fitmin, cfg.fitmax);
-    std::cout << "Fit status = " << static_cast<int>(result) << "\n";
+    const int fit_status = static_cast<int>(result);
+    std::cout << "Fit status = " << fit_status << "\n";
 
     std::vector<double> fitted(cfg.NumParams());
     for (int i = 0; i < cfg.NumParams(); ++i) fitted[i] = fit.GetParameter(i);
 
     std::cout << "\nChi2/NDF = " << fit.GetChisquare() / fit.GetNDF() << "\n\n";
     PrintFitParameters(fit, cfg);
+
+    char save_json = 'n';
+    std::cout << "Save full fit summary to JSON? (y/n): ";
+    std::cin >> save_json;
+
+    if (save_json == 'y' || save_json == 'Y') {
+      std::string json_name;
+      std::cout << "Enter JSON filename: ";
+      std::cin >> json_name;
+
+      WriteFitSummaryJSON(fit, cfg, json_name, fit_status, argv[1]);
+    }
 
     // ------------------------------------------------------------------------- //
     // Upper limit scan for the superradiant state

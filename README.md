@@ -48,3 +48,13 @@ A sample config file and input ROOT file to
 6. Fit the spectrum using ROOT's Minuit2 minimizer.
 7. Extract fitted yields and uncertainties.
 8. Produce publication-quality plots and residuals.
+
+
+## Interference Analysis 
+There is also several Python analysis tools to study the interference phase, $\delta$, that is one of the parameters able to be be set. 
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```

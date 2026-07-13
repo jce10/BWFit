@@ -4,13 +4,15 @@ from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+
 FIT_CONFIGS = {
     0: (
         "free_centroid_free_width.csv",
         "Free Centroid + Free Width"
     ),
     1: (
-        "float_centroid_fixed_width.csv",
+        "free_centroid_fixed_width.csv",
         "Free Centroid + Fixed Width"
     ),
     2: (
@@ -180,64 +182,18 @@ def plot_2x2(
     plt.close(fig)
 
 
-# def plot_big_summary(df: pd.DataFrame, output: Path) -> None:
-#     fig, ax = plt.subplots(figsize=(13, 8))
-
-#     # Normalize everything so wildly different quantities can live together.
-#     columns = {
-#         "Trapped yield": "trapped_yield",
-#         "Superrad yield": "superrad_yield",
-#         "Trapped centroid": "trapped_centroid",
-#         "Superrad centroid": "superrad_centroid",
-#         "Trapped width": "trapped_width",
-#         "Superrad width": "superrad_width",
-#         "Phase": "phase",
-#         r"$\chi^2$/NDF": "chi2_ndf",
-#     }
-
-#     for label, col in columns.items():
-#         y = df[col]
-#         y_norm = y / y.max()
-#         ax.plot(df["theta"], y_norm, "o-", label=label)
-
-#     ax.set_xlabel(r"$\theta_{\mathrm{lab}}$ (deg)")
-#     ax.set_ylabel("Value / max(value)")
-#     ax.set_title("Normalized summary of floating Breit-Wigner fit parameters")
-#     ax.legend(ncol=2)
-#     ax.grid(alpha=0.3)
-
-#     fig.tight_layout()
-#     fig.savefig(output, dpi=300)
-    
-#     plt.show()  # Show the figure
-
-#     plt.close(fig)
-
-
-# def main() -> None:
-#     # csv_path = Path("free_centroid_free_width.csv")
-#     csv_path = Path("free_centroid_fixed_width.csv")
-#     df = load_fit_csv(csv_path)
-
-#     plot_2x2(df, Path("bw_fit_params_2x2.png"))
-#     # plot_big_summary(df, Path("bw_fit_params_big_summary.png"))
-
-#     print("Saved:")
-#     print("  bw_fit_params_2x2.png")
-#     print("  bw_fit_params_big_summary.png")
 
 def main() -> None:
-
-    fit_choice = 2  # <----- CHANGE ONLY THIS NUMBER
+    fit_choice = 1
 
     csv_file, title = FIT_CONFIGS[fit_choice]
 
-    csv_path = Path(csv_file)
+    csv_path = SCRIPT_DIR / csv_file
+    output = SCRIPT_DIR / f"{Path(csv_file).stem}_2x2.png"
+
+    print(f"Reading: {csv_path}")
 
     df = load_fit_csv(csv_path)
-
-    output = Path(csv_path.stem + "_2x2.png")
-
     plot_2x2(df, output, title)
 
     print(f"Saved: {output}")
