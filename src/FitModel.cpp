@@ -126,7 +126,11 @@ void ConfigureParameterLimits(TF1& fit, const FitConfig& cfg) {
     }
   }
 
-  fit.SetParLimits(cfg.PhaseIndex(), cfg.phase.min, cfg.phase.max);
+  if (cfg.fit_phase) {
+    fit.SetParLimits(cfg.PhaseIndex(), cfg.phase.min, cfg.phase.max);
+  } else {
+    fit.FixParameter(cfg.PhaseIndex(), cfg.phase.value);
+  }
   fit.SetParLimits(cfg.BgEIndex(), cfg.bg_e.min, cfg.bg_e.max);
   fit.SetParLimits(cfg.BgA0Index(), cfg.bg_a0.min, cfg.bg_a0.max);
   fit.SetParLimits(cfg.BgA1Index(), cfg.bg_a1.min, cfg.bg_a1.max);

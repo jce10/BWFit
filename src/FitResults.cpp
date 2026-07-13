@@ -118,10 +118,12 @@ void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
 
   const double phase_fit_pi2 = phase_fit_rad * 2.0 / M_PI;
   const double phase_err_pi2 = phase_err_rad * 2.0 / M_PI;
+  const char* phase_status = cfg.fit_phase ? "FLOAT" : "FIXED";
 
   std::cout << "\nInterference phase, delta:\n";
   std::cout << "  set = " << phase_set_rad
-            << " rad = " << phase_set_pi2 << " * pi/2\n";
+            << " rad = " << phase_set_pi2 << " * pi/2"
+            << " [" << phase_status << "]\n";
 
   std::cout << "  fit = " << phase_fit_rad
             << " +/- " << phase_err_rad << " rad\n";
@@ -209,6 +211,7 @@ void WriteFitSummaryJSON(const TF1& fit,
       << "      \"num_params\": " << cfg.NumParams() << ",\n"
       << "      \"use_relativistic\": " << BoolText(cfg.use_relativistic) << ",\n"
       << "      \"use_interference\": " << BoolText(cfg.use_interference) << ",\n"
+      << "      \"fit_phase\": " << BoolText(cfg.fit_phase) << ",\n"
       << "      \"width_perc\": " << cfg.width_perc << ",\n"
       << "      \"trapped_index\": " << cfg.trapped_index << ",\n"
       << "      \"superrad_index\": " << cfg.superrad_index << "\n"
@@ -294,6 +297,7 @@ void WriteFitSummaryJSON(const TF1& fit,
   out << "    ],\n"
       << "    \"interference\": {\n"
       << "      \"enabled\": " << BoolText(cfg.use_interference) << ",\n"
+      << "      \"status\": \"" << (cfg.fit_phase ? "FLOAT" : "FIXED") << "\",\n"
       << "      \"phase_set_rad\": " << phase_set_rad << ",\n"
       << "      \"phase_set_pi_over_2_units\": " << phase_set_pi2 << ",\n"
       << "      \"phase_fit_rad\": " << phase_fit_rad << ",\n"

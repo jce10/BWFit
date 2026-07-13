@@ -48,6 +48,7 @@ FitConfig ReadConfig(const std::string& path) {
   int num_states = 0;
   int rel = 0;
   int interf = 1;
+  int fit_phase = 1;
 
   // read config file line by line
   ReadLabeled(input, cfg.angle_deg);
@@ -62,6 +63,7 @@ FitConfig ReadConfig(const std::string& path) {
   ReadLabeled(input, num_states); 
   ReadLabeled(input, rel);
   ReadLabeled(input, interf);
+  ReadLabeled(input, fit_phase);
   ReadLabeled(input, cfg.width_perc);
   ReadLabeled(input, cfg.trapped_index);
   ReadLabeled(input, cfg.superrad_index);
@@ -75,6 +77,7 @@ FitConfig ReadConfig(const std::string& path) {
 
   cfg.use_relativistic = (rel != 0); // relativistic 0 = off, 1 = on
   cfg.use_interference = (interf != 0); // interference 0 = off, 1 = on
+  cfg.fit_phase = (fit_phase != 0); // phase 0 = fixed, 1 = floating
 
   ReadLabeled(input, cfg.phase.value);
   ReadLabeled(input, cfg.phase.min);
@@ -136,11 +139,13 @@ void PrintConfig(const FitConfig& cfg) {
             << "  NUM_STATES = " << cfg.states.size() << " (numparams = " << cfg.NumParams() << ")\n"
             << "  USE_RELATIVISTIC = " << cfg.use_relativistic << "\n"
             << "  USE_INTERFERENCE = " << cfg.use_interference << "\n"
+            << "  FIT_PHASE = " << cfg.fit_phase << "\n"
             << "  TI/SI = " << cfg.trapped_index << "/" << cfg.superrad_index << "\n"
             << "  WIDTH_PERC = " << 100.0 * cfg.width_perc << "%\n"
             << "  FULL = [" << cfg.fullmin << ", " << cfg.fullmax << "] MeV\n"
             << "  FIT  = [" << cfg.fitmin << ", " << cfg.fitmax << "] MeV\n"
-            << "  PHASE = " << cfg.phase.value * 2.0 / M_PI << " * pi/2\n"
+            << "  PHASE = " << cfg.phase.value * 2.0 / M_PI
+            << " * pi/2 [" << (cfg.fit_phase ? "FLOAT" : "FIXED") << "]\n"
             << "  BACKGROUND_TYPE = " << ToString(cfg.background_type) << "\n";
 
   if (cfg.background_type == BackgroundType::Linear) {

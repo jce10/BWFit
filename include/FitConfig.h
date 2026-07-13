@@ -48,6 +48,7 @@ struct FitConfig {
 
   bool use_relativistic = false;
   bool use_interference = true;
+  bool fit_phase = true;
   double width_perc = 0.0;
   int trapped_index = 4;
   int superrad_index = 5;
