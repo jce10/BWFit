@@ -19,6 +19,23 @@
 #include <TString.h>
 
 namespace bwfit {
+namespace {
+
+bool IsValidStateIndex(int index, const FitConfig& cfg) {
+  return index >= 0 && index < static_cast<int>(cfg.states.size());
+}
+
+Color_t StateComponentColor(int index, const FitConfig& cfg) {
+  if (index == cfg.trapped_index) return kGreen + 2;
+  if (index == cfg.superrad_index) return kViolet + 1;
+  return kRed;
+}
+
+int StateComponentLineWidth(int index, const FitConfig& cfg) {
+  return (index == cfg.trapped_index || index == cfg.superrad_index) ? 3 : 2;
+}
+
+} // namespace
 
 void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
                     const FitConfig& cfg, const std::vector<double>& p,
@@ -90,7 +107,8 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
   }
   TGraph bg_gr(graph_points, E.data(), bg.data());
   bg_gr.SetName("background");
-  bg_gr.SetLineColor(kMagenta);
+  bg_gr.SetLineColor(kOrange + 7);
+  bg_gr.SetLineStyle(3);
   bg_gr.SetLineWidth(2);
   bg_gr.Draw("L same");
 
@@ -105,8 +123,8 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
       comp = new TF1(Form("state_%d", i), GaussianRoot, cfg.fullmin, cfg.fullmax, 3);
 
     comp->SetParameters(p[3 * i], p[3 * i + 1], p[3 * i + 2]);
-    comp->SetLineColor(kRed);
-    comp->SetLineWidth(2);
+    comp->SetLineColor(StateComponentColor(i, cfg));
+    comp->SetLineWidth(StateComponentLineWidth(i, cfg));
     comp->SetNpx(cfg.graph_points);
     comp->Draw("same");
     components.emplace_back(comp);
@@ -114,12 +132,15 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
 
   total_fit.Draw("same");
 
-  // Green fit-range boundaries on the spectrum panel.
+  // Neutral fit-range boundaries so they do not compete with the highlighted
+  // trapped-state curve.
   const double ymax = hist.GetMaximum() * 1.1;
   TLine left_bound_spec(cfg.fitmin, 0.0, cfg.fitmin, ymax);
   TLine right_bound_spec(cfg.fitmax, 0.0, cfg.fitmax, ymax);
-  left_bound_spec.SetLineColor(kGreen + 2);
-  right_bound_spec.SetLineColor(kGreen + 2);
+  left_bound_spec.SetLineColor(kGray + 1);
+  right_bound_spec.SetLineColor(kGray + 1);
+  left_bound_spec.SetLineStyle(7);
+  right_bound_spec.SetLineStyle(7);
   left_bound_spec.Draw("same");
   right_bound_spec.Draw("same");
 
@@ -127,13 +148,17 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
   leg->Clear();
   const int ti = cfg.trapped_index;
   const int si = cfg.superrad_index;
-  if (ti >= 0 && ti < static_cast<int>(cfg.states.size())) {
-    leg->AddEntry("", Form("Trapped: E = %.3f MeV | #Gamma = %.3f MeV | Yield = %.0f",
-                           p[3 * ti + 1], p[3 * ti + 2], p[3 * ti]));
+  if (IsValidStateIndex(ti, cfg)) {
+    leg->AddEntry(components[ti].get(),
+                  Form("Trapped: E = %.3f MeV | #Gamma = %.3f MeV | Yield = %.0f",
+                       p[3 * ti + 1], p[3 * ti + 2], p[3 * ti]),
+                  "l");
   }
-  if (si >= 0 && si < static_cast<int>(cfg.states.size())) {
-    leg->AddEntry("", Form("Superrad: E = %.3f MeV | #Gamma = %.3f MeV | Yield = %.0f",
-                           p[3 * si + 1], p[3 * si + 2], p[3 * si]));
+  if (IsValidStateIndex(si, cfg)) {
+    leg->AddEntry(components[si].get(),
+                  Form("Superrad: E = %.3f MeV | #Gamma = %.3f MeV | Yield = %.0f",
+                       p[3 * si + 1], p[3 * si + 2], p[3 * si]),
+                  "l");
   }
 
   const double chi2_ndf = (ndf > 0) ? chi2 / static_cast<double>(ndf) : 0.0;
@@ -184,7 +209,7 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
   TH1F residual_frame("residual_frame", "", residual_bins, cfg.fullmin, cfg.fullmax);
   residual_frame.SetStats(0);
   residual_frame.GetXaxis()->SetTitle(hist.GetXaxis()->GetTitle());
-  residual_frame.GetYaxis()->SetTitle("Data - Fit");
+  residual_frame.GetYaxis()->SetTitle("Residuals");
 
   residual_frame.GetXaxis()->SetTitleSize(0.12);
   residual_frame.GetXaxis()->SetLabelSize(0.10);
@@ -203,11 +228,13 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
   zero_line.SetLineStyle(2);
   zero_line.Draw("same");
 
-  // Matching green fit-range boundaries in the residual panel.
+  // Matching neutral fit-range boundaries in the residual panel.
   TLine left_bound_res(cfg.fitmin, residual_frame.GetMinimum(), cfg.fitmin, residual_frame.GetMaximum());
   TLine right_bound_res(cfg.fitmax, residual_frame.GetMinimum(), cfg.fitmax, residual_frame.GetMaximum());
-  left_bound_res.SetLineColor(kGreen + 2);
-  right_bound_res.SetLineColor(kGreen + 2);
+  left_bound_res.SetLineColor(kGray + 1);
+  right_bound_res.SetLineColor(kGray + 1);
+  left_bound_res.SetLineStyle(7);
+  right_bound_res.SetLineStyle(7);
   left_bound_res.Draw("same");
   right_bound_res.Draw("same");
 

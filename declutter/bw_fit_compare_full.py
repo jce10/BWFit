@@ -89,7 +89,8 @@ def plot_parameter_grid(
 
 
 def main() -> None:
-    csv_path = SCRIPT_DIR / "free_centroid_free_width_all_states.csv"
+    # csv_path = SCRIPT_DIR / "free_centroid_free_width_all_states.csv"
+    csv_path = SCRIPT_DIR / "fixed_phase_free_cent_width.csv"
     df = load_all_states_csv(csv_path)
 
     plot_parameter_grid(

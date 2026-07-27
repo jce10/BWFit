@@ -23,6 +23,11 @@ FIT_CONFIGS = {
         "fixed_centroid_fixed_width.csv",
         "Fixed Centroid + Fixed Width"
     ),
+
+    4: (
+        "fixed_centroid_fixed_width.csv",
+        "Fixed Centroid + Fixed Width"
+    ),
 }
 
 
