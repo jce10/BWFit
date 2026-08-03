@@ -16,7 +16,7 @@ OBJS = \
   $(OBJDIR)/Plotting.o \
   $(OBJDIR)/UpperLimit.o
 
-$(BINDIR)/bwsingf: $(OBJS)
+$(BINDIR)/bwgaussfit: $(OBJS)
 	@mkdir -p $(BINDIR)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(ROOTLIBS)
 
@@ -25,4 +25,4 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJDIR)/*.o $(BINDIR)/bwsingf
+	rm -f $(OBJDIR)/*.o $(BINDIR)/bwgaussfit

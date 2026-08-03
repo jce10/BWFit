@@ -1,9 +1,9 @@
 ANGLE: 10
 ROOTFILE: rootfiles/9Be6Lid_10deg.root
-OUTPUT: outputs/9Be6Lid_10deg_superrad.root
+OUTPUT: outputs/10deg_superrad.root
 TREE: singles_tree
 BRANCH: singles_fppos
-TITLE: 9Be6Lid_10deg_superrad
+TITLE: 10deg_superrad
 CALIB_SLOPE: -0.0224
 CALIB_INTERCEPT: 9.18
 

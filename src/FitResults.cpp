@@ -1,4 +1,5 @@
 #include "FitResults.h"
+#include "SpectrumIO.h"
 
 #include <cmath>
 #include <filesystem>
@@ -70,8 +71,18 @@ void WriteFitParamJSON(std::ostream& out,
 
 void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
 
+  const int histogram_bins = CalculateHistogramBins(cfg);
+  const double dE = CalculateHistogramBinWidth(cfg);
+  const double dE_keV = 1000.0 * dE;
+
   std::cout << "\n=== Fit Parameters ===\n";
   std::cout << std::fixed << std::showpoint << std::setprecision(4);
+
+  std::cout << "Histogram binning:\n";
+  std::cout << "  bins = " << histogram_bins << " over the full range\n";
+  std::cout << "  dE = " << dE << " MeV/bin"
+            << " = " << dE_keV << " keV/bin\n";
+  std::cout << "  Integral counts = normalization / dE\n\n";
 
   for (int i = 0; i < static_cast<int>(cfg.states.size()); ++i) {
     const int i_fac = 3 * i + 0;
@@ -87,10 +98,23 @@ void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
     std::cout << "State " << i
               << (st.is_bw ? " (Breit-Wigner)" : " (Gaussian)") << ":\n";
 
-    std::cout << "  Yield: "
-              << "set = " << st.fac
-              << " | fit = " << fit.GetParameter(i_fac)
-              << " +/- " << fit.GetParError(i_fac) << "\n";
+    const double norm_set = st.fac;
+    const double norm_fit = fit.GetParameter(i_fac);
+    const double norm_err = fit.GetParError(i_fac);
+
+    const double integral_set = norm_set / dE;
+    const double integral_fit = norm_fit / dE;
+    const double integral_err = norm_err / dE;
+
+    std::cout << "  Normalization (yield parameter): "
+              << "set = " << norm_set
+              << " | fit = " << norm_fit
+              << " +/- " << norm_err << " counts*MeV\n";
+
+    std::cout << "  Integral = yield/dE: "
+              << "set = " << integral_set << " counts"
+              << " | fit = " << integral_fit
+              << " +/- " << integral_err << " counts\n";
 
     std::cout << "  M:     "
               << "set = " << st.M << " MeV"
@@ -120,7 +144,7 @@ void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
   const double phase_err_pi2 = phase_err_rad * 2.0 / M_PI;
   const char* phase_status = cfg.fit_phase ? "FLOAT" : "FIXED";
 
-  std::cout << "\nInterference phase, delta:\n";
+  std::cout << "\nInterference phase, δ:\n";
   std::cout << "  set = " << phase_set_rad
             << " rad = " << phase_set_pi2 << " * pi/2"
             << " [" << phase_status << "]\n";
@@ -192,6 +216,10 @@ void WriteFitSummaryJSON(const TF1& fit,
   const double phase_fit_pi2 = phase_fit_rad * 2.0 / M_PI;
   const double phase_err_pi2 = phase_err_rad * 2.0 / M_PI;
 
+  const int histogram_bins = CalculateHistogramBins(cfg);
+  const double dE = CalculateHistogramBinWidth(cfg);
+  const double dE_keV = 1000.0 * dE;
+
   out << "{\n";
 
   out << "  \"fit_config\": {\n"
@@ -223,6 +251,11 @@ void WriteFitSummaryJSON(const TF1& fit,
       << "      \"fit_max_MeV\": " << cfg.fitmax << ",\n"
       << "      \"fit_bins\": " << cfg.fit_bins << ",\n"
       << "      \"graph_points\": " << cfg.graph_points << "\n"
+      << "    },\n"
+      << "    \"histogram_binning\": {\n"
+      << "      \"num_bins_full_range\": " << histogram_bins << ",\n"
+      << "      \"bin_width_MeV\": " << dE << ",\n"
+      << "      \"bin_width_keV\": " << dE_keV << "\n"
       << "    },\n"
       << "    \"phase\": {\n"
       << "      \"value_rad\": " << cfg.phase.value << ",\n"
@@ -286,7 +319,17 @@ void WriteFitSummaryJSON(const TF1& fit,
         << "        \"index\": " << i << ",\n"
         << "        \"shape\": \"" << (st.is_bw ? "Breit-Wigner" : "Gaussian") << "\",\n";
 
-    WriteFitParamJSON(out, "yield", st.fac, fit.GetParameter(i_fac), fit.GetParError(i_fac), "FLOAT", 8);
+    const double norm_set = st.fac;
+    const double norm_fit = fit.GetParameter(i_fac);
+    const double norm_err = fit.GetParError(i_fac);
+
+    const double integral_set = norm_set / dE;
+    const double integral_fit = norm_fit / dE;
+    const double integral_err = norm_err / dE;
+
+    WriteFitParamJSON(out, "yield", norm_set, norm_fit, norm_err, "FLOAT", 8);
+    out << ",\n";
+    WriteFitParamJSON(out, "integral_counts", integral_set, integral_fit, integral_err, "DERIVED", 8);
     out << ",\n";
     WriteFitParamJSON(out, "centroid_MeV", st.M, fit.GetParameter(i_M), fit.GetParError(i_M), M_status, 8);
     out << ",\n";

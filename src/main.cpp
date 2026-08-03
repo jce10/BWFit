@@ -47,9 +47,14 @@ int main(int argc, char* argv[]) {
     std::cout << "Fit status = " << fit_status << "\n";
 
     std::vector<double> fitted(cfg.NumParams());
-    for (int i = 0; i < cfg.NumParams(); ++i) fitted[i] = fit.GetParameter(i);
+    for (int i = 0; i < cfg.NumParams(); ++i) {
+      fitted[i] = fit.GetParameter(i);
+    }
 
-    std::cout << "\nChi2/NDF = " << fit.GetChisquare() / fit.GetNDF() << "\n\n";
+    std::cout << "\nChi2/NDF = "
+              << fit.GetChisquare() / fit.GetNDF()
+              << "\n\n";
+
     PrintFitParameters(fit, cfg);
 
     char save_json = 'n';
@@ -61,36 +66,86 @@ int main(int argc, char* argv[]) {
       std::cout << "Enter JSON filename: ";
       std::cin >> json_name;
 
-      WriteFitSummaryJSON(fit, cfg, json_name, fit_status, argv[1]);
+      WriteFitSummaryJSON(
+          fit,
+          cfg,
+          json_name,
+          fit_status,
+          argv[1]);
     }
 
-    // ------------------------------------------------------------------------- //
-    // Upper limit scan for the superradiant state
-    // ------------------------------------------------------------------------- //
+    // ---------------------------------------------------------------------- //
+    // Profile-likelihood upper-limit scan for the superradiant normalization.
+    //
+    // The scan variable is the fitter's normalization parameter in
+    // counts*MeV. UpperLimit.cpp also prints the corresponding integral counts
+    // using integral = normalization / histogram bin width.
+    //
+    // Current grid:
+    //   0.0 to 30.0 counts*MeV in steps of 0.1 counts*MeV
+    //
+    // With approximately 12-keV bins, each step is roughly eight counts.
+    // Increase the upper endpoint if Delta chi2 = 2.71 is not reached.
+    // ---------------------------------------------------------------------- //
 
-    // std::vector<double> yields = {
-    //   0.0, 0.1, 0.5, 1.0, 2.0,
-    //   5.0, 10.0, 20.0, 50.0, 100.0
-    // };
-    // auto scan = ScanUpperLimit(*hist, cfg, fitted, yields, false);
+    // const double scan_yield_min = 0.0;
+    // const double scan_yield_max = 30.0;
+    // const int scan_points = 301;
+
+    // const std::vector<double> yields =
+    //     MakeYieldGrid(scan_yield_min, scan_yield_max, scan_points);
+
+    // std::cout << "\nRunning superradiant upper-limit scan from "
+    //           << scan_yield_min << " to " << scan_yield_max
+    //           << " counts*MeV using " << scan_points << " points...\n";
+
+    // // Match the scan model to the nominal fit configuration.
+    // const bool scan_interference = cfg.use_interference;
+
+    // const UpperLimitScanResult scan =
+    //     ScanUpperLimit(
+    //         *hist,
+    //         cfg,
+    //         fitted,
+    //         yields,
+    //         scan_interference);
+
     // PrintUpperLimitScan(scan);
 
-    // ------------------------------------------------------------------------- //
+    // ---------------------------------------------------------------------- //
 
-    TF1 full_fit("bw_fit_full", model, cfg.fullmin, cfg.fullmax, cfg.NumParams());
+    TF1 full_fit(
+        "bw_fit_full",
+        model,
+        cfg.fullmin,
+        cfg.fullmax,
+        cfg.NumParams());
     full_fit.SetParameters(fitted.data());
     full_fit.SetNpx(cfg.graph_points);
 
-    TF1 full_no_interf("bw_fit_full_nointerf", no_interference_model, cfg.fullmin, cfg.fullmax, cfg.NumParams());
+    TF1 full_no_interf(
+        "bw_fit_full_nointerf",
+        no_interference_model,
+        cfg.fullmin,
+        cfg.fullmax,
+        cfg.NumParams());
     full_no_interf.SetParameters(fitted.data());
     full_no_interf.SetNpx(cfg.graph_points);
 
-    double chi2 = fit.GetChisquare();
-    double ndf = fit.GetNDF();
+    const double chi2 = fit.GetChisquare();
+    const double ndf = fit.GetNDF();
 
-    DrawAndSaveFit(*hist, full_fit, full_no_interf, cfg, fitted, chi2, ndf);
+    DrawAndSaveFit(
+        *hist,
+        full_fit,
+        full_no_interf,
+        cfg,
+        fitted,
+        chi2,
+        ndf);
 
     return 0;
+
   } catch (const std::exception& e) {
     std::cerr << "ERROR: " << e.what() << "\n";
     return 2;
