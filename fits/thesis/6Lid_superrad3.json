@@ -1,19 +1,19 @@
 {
   "fit_config": {
-    "source_config_path": "config/9Be6Lid_alphastrength/10deg_lin_superrad2.txt",
+    "source_config_path": "config/9Be6Lid_alphastrength/10deg_lin_superrad3.txt",
     "angle_deg": 10.0000000000,
     "rootfile": "rootfiles/9Be6Lid_10deg.root",
-    "output_rootfile": "outputs/10deg_superrad.root",
+    "output_rootfile": "outputs/10deg_superrad3.root",
     "tree_name": "singles_tree",
     "branch_name": "singles_fppos",
-    "title": "10deg_superrad",
+    "title": "10deg_superrad3",
     "calibration": {
       "slope": -0.0224000000,
       "intercept": 9.1800000000
     },
     "model_settings": {
-      "num_states": 8,
-      "num_params": 28,
+      "num_states": 6,
+      "num_params": 22,
       "use_relativistic": false,
       "use_interference": false,
       "fit_phase": true,
@@ -24,15 +24,15 @@
     "ranges": {
       "full_min_MeV": 6.0000000000,
       "full_max_MeV": 11.5000000000,
-      "fit_min_MeV": 7.2500000000,
-      "fit_max_MeV": 10.1000000000,
+      "fit_min_MeV": 7.0000000000,
+      "fit_max_MeV": 9.4500000000,
       "fit_bins": 250,
       "graph_points": 5000
     },
     "histogram_binning": {
-      "num_bins_full_range": 482,
-      "bin_width_MeV": 0.0114107884,
-      "bin_width_keV": 11.4107883817
+      "num_bins_full_range": 561,
+      "bin_width_MeV": 0.0098039216,
+      "bin_width_keV": 9.8039215686
     },
     "phase": {
       "value_rad": 0.0000000000,
@@ -108,31 +108,15 @@
         "yield": { "value": 100.0000000000 },
         "centroid_MeV": { "value": 9.3680000000, "vary": false },
         "width_MeV": { "value": 0.1170000000, "vary": false }
-      },
-      {
-        "index": 6,
-        "shape": "Gaussian",
-        "is_bw": false,
-        "yield": { "value": 500.0000000000 },
-        "centroid_MeV": { "value": 9.6500000000, "vary": false },
-        "width_MeV": { "value": 0.1500000000, "vary": false }
-      },
-      {
-        "index": 7,
-        "shape": "Gaussian",
-        "is_bw": false,
-        "yield": { "value": 500.0000000000 },
-        "centroid_MeV": { "value": 9.7630000000, "vary": false },
-        "width_MeV": { "value": 0.1650000000, "vary": false }
       }
     ]
   },
   "fit_result": {
     "status": 0,
     "quality": {
-      "chi2": 882.3024612194,
-      "ndf": 238,
-      "chi2_ndf": 3.7071531984
+      "chi2": 566.6397558989,
+      "ndf": 241,
+      "chi2_ndf": 2.3512023066
     },
     "states": [
       {
@@ -140,14 +124,14 @@
         "shape": "Gaussian",
         "yield": {
           "set": 200.0000000000,
-          "fit": 102.0364067036,
-          "err": 1.3226988353,
+          "fit": 88.8806822760,
+          "err": 1.0598564649,
           "status": "FLOAT"
         },
         "integral_counts": {
-          "set": 17527.2727272727,
-          "fit": 8942.0996420205,
-          "err": 115.9165161150,
+          "set": 20400.0000000000,
+          "fit": 9065.8295921558,
+          "err": 108.1053594150,
           "status": "DERIVED"
         },
         "centroid_MeV": {
@@ -168,14 +152,14 @@
         "shape": "Gaussian",
         "yield": {
           "set": 400.0000000000,
-          "fit": 43.7125641095,
-          "err": 0.9373300857,
+          "fit": 38.0042661108,
+          "err": 0.7807623186,
           "status": "FLOAT"
         },
         "integral_counts": {
-          "set": 35054.5454545455,
-          "fit": 3830.8101637815,
-          "err": 82.1442002419,
+          "set": 40800.0000000000,
+          "fit": 3876.4351433036,
+          "err": 79.6377564976,
           "status": "DERIVED"
         },
         "centroid_MeV": {
@@ -196,14 +180,14 @@
         "shape": "Gaussian",
         "yield": {
           "set": 100.0000000000,
-          "fit": 1.1489214119,
-          "err": 3.3898321812,
+          "fit": 17.0054305408,
+          "err": 1.9553321456,
           "status": "FLOAT"
         },
         "integral_counts": {
-          "set": 8763.6363636364,
-          "fit": 100.6872946428,
-          "err": 297.0725656993,
+          "set": 10200.0000000000,
+          "fit": 1734.5539151623,
+          "err": 199.4438788534,
           "status": "DERIVED"
         },
         "centroid_MeV": {
@@ -224,14 +208,14 @@
         "shape": "Gaussian",
         "yield": {
           "set": 100.0000000000,
-          "fit": 9.5219298307,
-          "err": 0.8413601244,
+          "fit": 10.0644999812,
+          "err": 0.7255614092,
           "status": "FLOAT"
         },
         "integral_counts": {
-          "set": 8763.6363636364,
-          "fit": 834.4673051656,
-          "err": 73.7337418078,
+          "set": 10200.0000000000,
+          "fit": 1026.5789980852,
+          "err": 74.0072637392,
           "status": "DERIVED"
         },
         "centroid_MeV": {
@@ -252,14 +236,14 @@
         "shape": "Gaussian",
         "yield": {
           "set": 100.0000000000,
-          "fit": 100.6552719536,
-          "err": 1.1713709739,
+          "fit": 89.5905019991,
+          "err": 1.0983634014,
           "status": "FLOAT"
         },
         "integral_counts": {
-          "set": 8763.6363636364,
-          "fit": 8821.0620148449,
-          "err": 102.6546926246,
+          "set": 10200.0000000000,
+          "fit": 9138.2312039045,
+          "err": 112.0330669453,
           "status": "DERIVED"
         },
         "centroid_MeV": {
@@ -280,14 +264,14 @@
         "shape": "Gaussian",
         "yield": {
           "set": 100.0000000000,
-          "fit": 58.2131543924,
-          "err": 0.9693773264,
+          "fit": 53.8195081716,
+          "err": 0.8885007557,
           "status": "FLOAT"
         },
         "integral_counts": {
-          "set": 8763.6363636364,
-          "fit": 5101.5891667491,
-          "err": 84.9527038732,
+          "set": 10200.0000000000,
+          "fit": 5489.5898335044,
+          "err": 90.6270770828,
           "status": "DERIVED"
         },
         "centroid_MeV": {
@@ -299,62 +283,6 @@
         "width_MeV": {
           "set": 0.1170000000,
           "fit": 0.1170000000,
-          "err": 0.0000000000,
-          "status": "FIXED"
-        }
-      },
-      {
-        "index": 6,
-        "shape": "Gaussian",
-        "yield": {
-          "set": 500.0000000000,
-          "fit": 286.4146570457,
-          "err": 2.3042548774,
-          "status": "FLOAT"
-        },
-        "integral_counts": {
-          "set": 43818.1818181818,
-          "fit": 25100.3390356434,
-          "err": 201.9365183490,
-          "status": "DERIVED"
-        },
-        "centroid_MeV": {
-          "set": 9.6500000000,
-          "fit": 9.6500000000,
-          "err": 0.0000000000,
-          "status": "FIXED"
-        },
-        "width_MeV": {
-          "set": 0.1500000000,
-          "fit": 0.1500000000,
-          "err": 0.0000000000,
-          "status": "FIXED"
-        }
-      },
-      {
-        "index": 7,
-        "shape": "Gaussian",
-        "yield": {
-          "set": 500.0000000000,
-          "fit": 297.4146688114,
-          "err": 2.3116964040,
-          "status": "FLOAT"
-        },
-        "integral_counts": {
-          "set": 43818.1818181818,
-          "fit": 26064.3400667439,
-          "err": 202.5886666792,
-          "status": "DERIVED"
-        },
-        "centroid_MeV": {
-          "set": 9.7630000000,
-          "fit": 9.7630000000,
-          "err": 0.0000000000,
-          "status": "FIXED"
-        },
-        "width_MeV": {
-          "set": 0.1650000000,
-          "fit": 0.1650000000,
           "err": 0.0000000000,
           "status": "FIXED"
         }
@@ -380,14 +308,14 @@
       },
       "A0": {
         "set": 100.0000000000,
-        "fit": 67.9852727533,
-        "err": 2.5475872437,
+        "fit": 47.1577194362,
+        "err": 1.0851374776,
         "status": "FLOAT"
       },
       "A1": {
         "set": 0.0000000000,
-        "fit": 12.2449913026,
-        "err": 1.6227298938,
+        "fit": 4.9589967610,
+        "err": 0.9667987529,
         "status": "FLOAT"
       }
     }

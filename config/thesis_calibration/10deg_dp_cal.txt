@@ -1,11 +1,11 @@
-ANGLE: 15
-ROOTFILE: rootfiles/12Cdp_15deg.root
-OUTPUT: outputs/15deg_freeCGD.root
+ANGLE: 10
+ROOTFILE: rootfiles/12Cdp_10deg.root
+OUTPUT: outputs/10deg_freeCGD_cal.root
 TREE: singles_tree
 BRANCH: singles_fppos
-TITLE: 15deg_freeCGD
-CALIB_SLOPE: -0.00851
-CALIB_INTERCEPT: 8.260
+TITLE: 10deg_freeCGD_cal
+CALIB_SLOPE: -0.00865
+CALIB_INTERCEPT: 8.09
 
 NUM_STATES: 6
 TOG_REL: 0
@@ -17,8 +17,8 @@ SUPERRAD_INDEX: 4
 
 FULLMIN: 5.6
 FULLMAX: 11.0
-FITMIN:  6.75
-FITMAX:  9.60
+FITMIN:  6.82
+FITMAX:  9.62
 FITBINS: 250
 GRAPHPOINTS: 5000
 
@@ -28,7 +28,7 @@ DELTA_MAX:  4.00
 
 BACKGROUND_TYPE: linear
 
-BG_E:      6.0
+BG_E:      8.0
 BG_E_MIN:  8.0
 BG_E_MAX:  8.0
 
@@ -37,29 +37,29 @@ BG_A0_MIN:     0.0
 BG_A0_MAX:  5000.0
 
 BG_A1:         0.0
-BG_A1_MIN:  -1000.0
-BG_A1_MAX:   1000.0
+BG_A1_MIN:  -500.0
+BG_A1_MAX:   500.0
 
 STATE0
-FAC: 500
-M:   6.875
-G:   0.032
+FAC: 600
+M:   6.91
+G:   0.040
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
 
 STATE1
-FAC: 100
-M:   7.4665
-G:   0.015
+FAC: 200
+M:   7.510
+G:   0.025
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
 
 STATE2
-FAC: 700
-M:   7.524
-G:   0.020
+FAC: 400
+M:   7.559
+G:   0.030
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
@@ -81,9 +81,9 @@ FIT_M: 1
 FIT_G: 1
 
 STATE5
-FAC: 50
-M:   9.499
-G:   0.030
+FAC: 100
+M:   9.530
+G:   0.040
 IS_BW: 0
-FIT_M: 1
-FIT_G: 1
+FIT_M: 0
+FIT_G: 0

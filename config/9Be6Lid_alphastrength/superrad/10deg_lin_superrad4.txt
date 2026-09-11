@@ -1,13 +1,13 @@
 ANGLE: 10
 ROOTFILE: rootfiles/9Be6Lid_10deg.root
-OUTPUT: outputs/10deg_superrad2.root
+OUTPUT: outputs/10deg_superrad4.root
 TREE: singles_tree
 BRANCH: singles_fppos
-TITLE: 10deg_superrad2
+TITLE: 10deg_superrad4
 CALIB_SLOPE: -0.0224
 CALIB_INTERCEPT: 9.18
 
-NUM_STATES: 8
+NUM_STATES: 6
 TOG_REL: 0
 TOG_INTERFERENCE: 0
 FIT_PHASE: 1
@@ -18,7 +18,7 @@ SUPERRAD_INDEX: 2
 FULLMIN: 6.0
 FULLMAX: 11.5
 FITMIN:  7.20
-FITMAX:  10.1
+FITMAX:  9.45
 FITBINS: 250
 GRAPHPOINTS: 5000
 
@@ -58,7 +58,7 @@ FIT_M: 0
 FIT_G: 0
 
 STATE2
-FAC: 10
+FAC: 100
 M:   8.200
 G:   1.100
 IS_BW: 0
@@ -85,22 +85,6 @@ STATE5
 FAC: 100
 M:   9.368
 G:   0.117
-IS_BW: 0
-FIT_M: 0
-FIT_G: 0
-
-STATE6
-FAC: 500
-M:   9.650
-G:   0.150
-IS_BW: 0
-FIT_M: 0
-FIT_G: 0
-
-STATE7
-FAC: 500
-M:   9.763
-G:   0.165
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0

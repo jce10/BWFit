@@ -1,0 +1,323 @@
+{
+  "fit_config": {
+    "source_config_path": "config/9Be6Lid_alphastrength/10deg_lin_superrad4.txt",
+    "angle_deg": 10.0000000000,
+    "rootfile": "rootfiles/9Be6Lid_10deg.root",
+    "output_rootfile": "outputs/10deg_superrad4.root",
+    "tree_name": "singles_tree",
+    "branch_name": "singles_fppos",
+    "title": "10deg_superrad4",
+    "calibration": {
+      "slope": -0.0224000000,
+      "intercept": 9.1800000000
+    },
+    "model_settings": {
+      "num_states": 6,
+      "num_params": 22,
+      "use_relativistic": false,
+      "use_interference": false,
+      "fit_phase": true,
+      "width_perc": 1.0000000000,
+      "trapped_index": 1,
+      "superrad_index": 2
+    },
+    "ranges": {
+      "full_min_MeV": 6.0000000000,
+      "full_max_MeV": 11.5000000000,
+      "fit_min_MeV": 7.2000000000,
+      "fit_max_MeV": 9.4500000000,
+      "fit_bins": 250,
+      "graph_points": 5000
+    },
+    "histogram_binning": {
+      "num_bins_full_range": 611,
+      "bin_width_MeV": 0.0090016367,
+      "bin_width_keV": 9.0016366612
+    },
+    "phase": {
+      "value_rad": 0.0000000000,
+      "min_rad": 0.0000000000,
+      "max_rad": 6.2831853072,
+      "value_pi_over_2_units": 0.0000000000,
+      "min_pi_over_2_units": 0.0000000000,
+      "max_pi_over_2_units": 4.0000000000
+    },
+    "background": {
+      "type": "linear",
+      "E0_MeV": {
+        "value": 8.0000000000,
+        "min": 8.0000000000,
+        "max": 8.0000000000
+      },
+      "A0": {
+        "value": 100.0000000000,
+        "min": 0.0000000000,
+        "max": 500.0000000000
+      },
+      "A1": {
+        "value": 0.0000000000,
+        "min": -500.0000000000,
+        "max": 500.0000000000
+      }
+    },
+    "states": [
+      {
+        "index": 0,
+        "shape": "Gaussian",
+        "is_bw": false,
+        "yield": { "value": 200.0000000000 },
+        "centroid_MeV": { "value": 7.4500000000, "vary": false },
+        "width_MeV": { "value": 0.1510000000, "vary": false }
+      },
+      {
+        "index": 1,
+        "shape": "Gaussian",
+        "is_bw": false,
+        "yield": { "value": 400.0000000000 },
+        "centroid_MeV": { "value": 7.6280000000, "vary": false },
+        "width_MeV": { "value": 0.1420000000, "vary": false }
+      },
+      {
+        "index": 2,
+        "shape": "Gaussian",
+        "is_bw": false,
+        "yield": { "value": 100.0000000000 },
+        "centroid_MeV": { "value": 8.2000000000, "vary": false },
+        "width_MeV": { "value": 1.1000000000, "vary": false }
+      },
+      {
+        "index": 3,
+        "shape": "Gaussian",
+        "is_bw": false,
+        "yield": { "value": 100.0000000000 },
+        "centroid_MeV": { "value": 8.6700000000, "vary": false },
+        "width_MeV": { "value": 0.2500000000, "vary": false }
+      },
+      {
+        "index": 4,
+        "shape": "Gaussian",
+        "is_bw": false,
+        "yield": { "value": 100.0000000000 },
+        "centroid_MeV": { "value": 8.8740000000, "vary": false },
+        "width_MeV": { "value": 0.1650000000, "vary": false }
+      },
+      {
+        "index": 5,
+        "shape": "Gaussian",
+        "is_bw": false,
+        "yield": { "value": 100.0000000000 },
+        "centroid_MeV": { "value": 9.3680000000, "vary": false },
+        "width_MeV": { "value": 0.1170000000, "vary": false }
+      }
+    ]
+  },
+  "fit_result": {
+    "status": 0,
+    "quality": {
+      "chi2": 515.0440210146,
+      "ndf": 241,
+      "chi2_ndf": 2.1371121204
+    },
+    "states": [
+      {
+        "index": 0,
+        "shape": "Gaussian",
+        "yield": {
+          "set": 200.0000000000,
+          "fit": 79.6478226990,
+          "err": 1.0132657563,
+          "status": "FLOAT"
+        },
+        "integral_counts": {
+          "set": 22218.1818181818,
+          "fit": 8848.1490307411,
+          "err": 112.5646140185,
+          "status": "DERIVED"
+        },
+        "centroid_MeV": {
+          "set": 7.4500000000,
+          "fit": 7.4500000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        },
+        "width_MeV": {
+          "set": 0.1510000000,
+          "fit": 0.1510000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        }
+      },
+      {
+        "index": 1,
+        "shape": "Gaussian",
+        "yield": {
+          "set": 400.0000000000,
+          "fit": 33.8082554674,
+          "err": 0.7232386881,
+          "status": "FLOAT"
+        },
+        "integral_counts": {
+          "set": 44436.3636363636,
+          "fit": 3755.7898346480,
+          "err": 80.3452433553,
+          "status": "DERIVED"
+        },
+        "centroid_MeV": {
+          "set": 7.6280000000,
+          "fit": 7.6280000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        },
+        "width_MeV": {
+          "set": 0.1420000000,
+          "fit": 0.1420000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        }
+      },
+      {
+        "index": 2,
+        "shape": "Gaussian",
+        "yield": {
+          "set": 100.0000000000,
+          "fit": 8.2802391796,
+          "err": 2.2210828965,
+          "status": "FLOAT"
+        },
+        "integral_counts": {
+          "set": 11109.0909090909,
+          "fit": 919.8592979535,
+          "err": 246.7421181335,
+          "status": "DERIVED"
+        },
+        "centroid_MeV": {
+          "set": 8.2000000000,
+          "fit": 8.2000000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        },
+        "width_MeV": {
+          "set": 1.1000000000,
+          "fit": 1.1000000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        }
+      },
+      {
+        "index": 3,
+        "shape": "Gaussian",
+        "yield": {
+          "set": 100.0000000000,
+          "fit": 9.3540291713,
+          "err": 0.6662836514,
+          "status": "FLOAT"
+        },
+        "integral_counts": {
+          "set": 11109.0909090909,
+          "fit": 1039.1476043003,
+          "err": 74.0180565487,
+          "status": "DERIVED"
+        },
+        "centroid_MeV": {
+          "set": 8.6700000000,
+          "fit": 8.6700000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        },
+        "width_MeV": {
+          "set": 0.2500000000,
+          "fit": 0.2500000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        }
+      },
+      {
+        "index": 4,
+        "shape": "Gaussian",
+        "yield": {
+          "set": 100.0000000000,
+          "fit": 82.2122358453,
+          "err": 0.9730513230,
+          "status": "FLOAT"
+        },
+        "integral_counts": {
+          "set": 11109.0909090909,
+          "fit": 9133.0320184461,
+          "err": 108.0971560603,
+          "status": "DERIVED"
+        },
+        "centroid_MeV": {
+          "set": 8.8740000000,
+          "fit": 8.8740000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        },
+        "width_MeV": {
+          "set": 0.1650000000,
+          "fit": 0.1650000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        }
+      },
+      {
+        "index": 5,
+        "shape": "Gaussian",
+        "yield": {
+          "set": 100.0000000000,
+          "fit": 49.5651641137,
+          "err": 0.8169988279,
+          "status": "FLOAT"
+        },
+        "integral_counts": {
+          "set": 11109.0909090909,
+          "fit": 5506.2391406260,
+          "err": 90.7611425162,
+          "status": "DERIVED"
+        },
+        "centroid_MeV": {
+          "set": 9.3680000000,
+          "fit": 9.3680000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        },
+        "width_MeV": {
+          "set": 0.1170000000,
+          "fit": 0.1170000000,
+          "err": 0.0000000000,
+          "status": "FIXED"
+        }
+      }
+    ],
+    "interference": {
+      "enabled": false,
+      "status": "FLOAT",
+      "phase_set_rad": 0.0000000000,
+      "phase_set_pi_over_2_units": 0.0000000000,
+      "phase_fit_rad": 0.0628318531,
+      "phase_err_rad": 4.1321560402,
+      "phase_fit_pi_over_2_units": 0.0400000000,
+      "phase_err_pi_over_2_units": 2.6306122377
+    },
+    "background": {
+      "type": "linear",
+      "E0_MeV": {
+        "set": 8.0000000000,
+        "fit": 8.0000000000,
+        "err": 0.0000000000,
+        "status": "FLOAT"
+      },
+      "A0": {
+        "set": 100.0000000000,
+        "fit": 49.7979634797,
+        "err": 1.5052255337,
+        "status": "FLOAT"
+      },
+      "A1": {
+        "set": 0.0000000000,
+        "fit": -0.1666550725,
+        "err": 1.2149811622,
+        "status": "FLOAT"
+      }
+    }
+  }
+}
