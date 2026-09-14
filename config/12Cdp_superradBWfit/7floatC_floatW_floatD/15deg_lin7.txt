@@ -51,7 +51,7 @@ FIT_G: 0
 STATE1
 FAC: 100
 M:   7.4665
-G:   0.015
+G:   0.030
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
@@ -59,7 +59,7 @@ FIT_G: 0
 STATE2
 FAC: 700
 M:   7.524
-G:   0.020
+G:   0.030
 IS_BW: 0
 FIT_M: 0
 FIT_G: 0
@@ -85,5 +85,5 @@ FAC: 50
 M:   9.499
 G:   0.030
 IS_BW: 0
-FIT_M: 1
-FIT_G: 1
+FIT_M: 0
+FIT_G: 0

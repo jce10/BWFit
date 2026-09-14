@@ -28,7 +28,7 @@ DELTA_MAX:  4.00
 
 BACKGROUND_TYPE: linear
 
-BG_E:      6.0
+BG_E:      8.0
 BG_E_MIN:  8.0
 BG_E_MAX:  8.0
 
