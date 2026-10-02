@@ -155,6 +155,17 @@ void PrintFitParameters(const TF1& fit, const FitConfig& cfg) {
               << " | fit = " << fit.GetParameter(i_M)
               << " +/- " << fit.GetParError(i_M) << " MeV"
               << " [" << M_status << "]\n";
+    if (st.fit_M) {
+      double lo = 0.0, hi = 0.0;
+      fit.GetParLimits(i_M, lo, hi);
+      std::cout << "         allowed = [" << lo << ", " << hi << "] MeV\n";
+      // A numerical boundary flag, not a confidence-interval criterion.
+      const double tolerance = std::max(1.0e-6, 1.0e-3 * (hi - lo));
+      const double centroid = fit.GetParameter(i_M);
+      if (hi > lo && (centroid - lo <= tolerance || hi - centroid <= tolerance))
+        std::cout << "  [warning] centroid is within " << tolerance
+                  << " MeV of a limit; check before using it as a calibration anchor.\n";
+    }
     std::cout << "  G:     "
               << "set = " << st.G << " MeV"
               << " | fit = " << fit.GetParameter(i_G)
@@ -390,13 +401,22 @@ void WriteFitSummaryJSON(const TF1& fit,
   out << "    \"states\": [\n";
   for (int i = 0; i < static_cast<int>(cfg.states.size()); ++i) {
     const auto& st = cfg.states[i];
+    const double centroid_min = !st.fit_M ? st.M :
+        (st.M_range > 0.0 ? std::max(cfg.fitmin, st.M - st.M_range) : cfg.fitmin);
+    const double centroid_max = !st.fit_M ? st.M :
+        (st.M_range > 0.0 ? std::min(cfg.fitmax, st.M + st.M_range) : cfg.fitmax);
     out << "      {\n"
         << "        \"index\": " << i << ",\n"
         << "        \"shape\": \"" << (st.is_bw ? "Breit-Wigner" : "Gaussian") << "\",\n"
         << "        \"is_bw\": " << BoolText(st.is_bw) << ",\n"
         << "        \"yield\": { \"value\": " << st.fac << " },\n"
         << "        \"centroid_MeV\": { \"value\": " << st.M
-        << ", \"vary\": " << BoolText(st.fit_M) << " },\n"
+        << ", \"vary\": " << BoolText(st.fit_M)
+        << ", \"min\": " << centroid_min << ", \"max\": " << centroid_max
+        << ", \"range_MeV\": ";
+    if (st.M_range > 0.0) out << st.M_range;
+    else out << "null";
+    out << " },\n"
         << "        \"width_MeV\": { \"value\": " << st.G
         << ", \"vary\": " << BoolText(st.fit_G) << " }\n"
         << "      }" << (i + 1 < static_cast<int>(cfg.states.size()) ? "," : "") << "\n";

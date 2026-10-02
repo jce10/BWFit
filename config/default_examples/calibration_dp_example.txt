@@ -1,0 +1,32 @@
+# STARTER TEMPLATE, not a fitted calibration. Replace seeds, ranges, yields,
+# reference energies/errors and file names with values for YOUR angle.
+# The narrow doublet is modeled jointly. The broad state and the state of
+# interest are fitted, but are not calibration anchors (anchor flag = 0).
+ROOTFILE rootfiles/12Cdp_15deg.root
+TREE singles_tree
+BRANCH singles_fppos
+OUTPUT_PREFIX outputs/calibration_15deg
+RANGE_MM -350 350
+BINS 2800
+ORDER 1
+STATISTIC poisson
+BACKGROUND_ORDER 1
+# BG initial min max, Bernstein background density in counts/mm
+BG 5 0 5000
+BG 5 0 5000
+
+# PEAK name shape anchor E_MeV dE_MeV  yield ymin ymax  x_mm xmin xmax  FWHM_mm wmin wmax
+# Gaussian and BW widths below are ALL FWHM, not Gaussian sigma.
+PEAK ref6860 gaussian 1 6.86000 0.00046  10000 0 1000000  161 154 168  0.8 0.2 3
+PEAK doublet7492 gaussian 0 7.492 0.010  2000 0 1000000  92 88 95  3.0 0.3 8
+PEAK ref7547 gaussian 1 7.547 0.003  8000 0 1000000  84 80 87  0.8 0.2 3
+PEAK trapped bw 0 7.68 0  2000 0 1000000  68 55 78  4 0.5 15
+PEAK broad bw 0 8.22 0  40000 0 10000000  4 -30 30  120 20 300
+PEAK ref9499 gaussian 1 9.49971 0.00006  8000 0 1000000  -147 -154 -140  2 0.3 6
+
+# Optional interference: zero-based peak indices and phase in RADIANS.
+# Uncomment only if the pair is physically appropriate for your spectrum.
+# Fixed phase: set all three values equal. Floating phase: provide bounds.
+# INTERFERENCE 3 4 0.5 0 6.283185307179586
+# Quadratic calibration needs ORDER 2 and at least four anchors.
+# Do not promote a poorly determined broad centroid just to meet that count.

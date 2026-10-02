@@ -96,7 +96,7 @@ IS_BW: 0
 FIT_M: 0
 FIT_G: 0
 
-STATE6
+STATE7
 FAC: 100
 M:   9.539
 G:   0.050

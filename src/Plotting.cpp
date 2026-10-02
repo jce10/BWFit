@@ -15,7 +15,7 @@
 #include <TLine.h>
 #include <TPad.h>
 // #include <TColor.h>
-// #include <TStyle.h>
+#include <TStyle.h>
 #include <TString.h>
 
 namespace bwfit {
@@ -77,6 +77,8 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
   hist.SetLineColor(kBlack);
   hist.SetStats(0);
 
+  gStyle->SetOptTitle(0); // Turn off the histogram title box
+
   // Let the residual panel carry the x-axis labels/title.
   hist.GetXaxis()->SetLabelSize(0.0);
   hist.GetXaxis()->SetTitleSize(0.0);
@@ -88,7 +90,7 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
 
   no_interference_fit.SetLineColor(kGray + 2);
   no_interference_fit.SetLineStyle(2);
-  no_interference_fit.SetLineWidth(2);
+  no_interference_fit.SetLineWidth(3);
   no_interference_fit.Draw("same");
 
   total_fit.SetLineColor(kBlue);
@@ -140,29 +142,37 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
   left_bound_spec.SetLineColor(kGray + 1);
   right_bound_spec.SetLineColor(kGray + 1);
   left_bound_spec.SetLineStyle(7);
+  left_bound_spec.SetLineWidth(3);
   right_bound_spec.SetLineStyle(7);
+  right_bound_spec.SetLineWidth(3);
   left_bound_spec.Draw("same");
   right_bound_spec.Draw("same");
 
   TLegend* leg = pad_spec->BuildLegend();
   leg->Clear();
+  leg->SetTextSize(0.05);
+  leg->SetBorderSize(0);
+  leg->SetFillStyle(0);
+  // legend with trapped and superradiant states is commented out for now, since they are not always present in the fit. 
+  // If you want to include them, uncomment the following lines and make sure to check if the indices are valid.
   const int ti = cfg.trapped_index;
   const int si = cfg.superrad_index;
-  if (IsValidStateIndex(ti, cfg)) {
-    leg->AddEntry(components[ti].get(),
-                  Form("Trapped: E = %.3f MeV | #Gamma = %.3f MeV | Yield = %.0f",
-                       p[3 * ti + 1], p[3 * ti + 2], p[3 * ti]),
-                  "l");
-  }
-  if (IsValidStateIndex(si, cfg)) {
-    leg->AddEntry(components[si].get(),
-                  Form("Superrad: E = %.3f MeV | #Gamma = %.3f MeV | Yield = %.0f",
-                       p[3 * si + 1], p[3 * si + 2], p[3 * si]),
-                  "l");
-  }
+  // if (IsValidStateIndex(ti, cfg)) {
+  //   leg->AddEntry(components[ti].get(),
+  //                 Form("Trapped: E = %.3f MeV | #Gamma = %.3f MeV | Yield = %.0f",
+  //                      p[3 * ti + 1], p[3 * ti + 2], p[3 * ti]),
+  //                 "l");
+  // }
+  // if (IsValidStateIndex(si, cfg)) {
+  //   leg->AddEntry(components[si].get(),
+  //                 Form("Superrad: E = %.3f MeV | #Gamma = %.3f MeV | Yield = %.0f",
+  //                      p[3 * si + 1], p[3 * si + 2], p[3 * si]),
+  //                 "l");
+  // }
 
   const double chi2_ndf = (ndf > 0) ? chi2 / static_cast<double>(ndf) : 0.0;
-  leg->AddEntry(&total_fit, Form("#chi^{2}/N = %.3f", chi2_ndf), "l");
+  // leg->AddEntry(&total_fit, Form("#chi^{2}/N = %.3f", chi2_ndf), "l"); // draw line distinguishing the total fit from the components
+  leg->AddEntry(&total_fit, Form("#chi^{2}/N = %.3f", chi2_ndf), ""); // no line
   leg->Draw();
 
   // -----------------------------
@@ -210,11 +220,12 @@ void DrawAndSaveFit(TH1F& hist, TF1& total_fit, TF1& no_interference_fit,
   residual_frame.SetStats(0);
   residual_frame.GetXaxis()->SetTitle(hist.GetXaxis()->GetTitle());
   residual_frame.GetYaxis()->SetTitle("Residuals");
+  residual_frame.GetYaxis()->CenterTitle();
 
   residual_frame.GetXaxis()->SetTitleSize(0.12);
   residual_frame.GetXaxis()->SetLabelSize(0.10);
   residual_frame.GetYaxis()->SetTitleSize(0.10);
-  residual_frame.GetYaxis()->SetLabelSize(0.08);
+  residual_frame.GetYaxis()->SetLabelSize(0.10);
   residual_frame.GetYaxis()->SetTitleOffset(0.55);
   residual_frame.GetYaxis()->SetNdivisions(505);
 

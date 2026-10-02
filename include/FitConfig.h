@@ -12,6 +12,8 @@ struct StateConfig {
   bool is_bw = false;
   bool fit_M = false;
   bool fit_G = false;
+  // Optional centroid half-range in MeV; -1 means omitted.
+  double M_range = -1.0;
 };
 
 struct BoundedValue {

@@ -1,7 +1,9 @@
 #include "FitModel.h"
 #include "LineShapes.h"
+#include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <stdexcept>
 
 namespace bwfit {
 
@@ -132,10 +134,22 @@ void ConfigureParameterLimits(TF1& fit, const FitConfig& cfg) {
       case 0:
         fit.SetParLimits(i, 0.0, 1.0E8);
         break;
-      case 1:
-        fit.SetParLimits(i, cfg.fitmin, cfg.fitmax);
-        if (!cfg.states[state].fit_M) fit.FixParameter(i, cfg.states[state].M);
+      case 1: {
+        const auto& st = cfg.states[state];
+        if (!st.fit_M) {
+          fit.FixParameter(i, st.M);
+          break;
+        }
+        if (!std::isfinite(st.M_range) ||
+            (st.M_range != -1.0 && st.M_range <= 0.0))
+          throw std::runtime_error("STATE" + std::to_string(state) + ": invalid M_RANGE");
+        const double lo = st.M_range > 0.0 ? std::max(cfg.fitmin, st.M - st.M_range) : cfg.fitmin;
+        const double hi = st.M_range > 0.0 ? std::min(cfg.fitmax, st.M + st.M_range) : cfg.fitmax;
+        if (!(lo < hi) || (st.M_range > 0.0 && (st.M < lo || st.M > hi)))
+          throw std::runtime_error("STATE" + std::to_string(state) + ": invalid centroid limits/start");
+        fit.SetParLimits(i, lo, hi);
         break;
+      }
       case 2: {
         const double min_G = cfg.states[state].G * (1.0 - cfg.width_perc);
         const double max_G = cfg.states[state].G * (1.0 + cfg.width_perc);

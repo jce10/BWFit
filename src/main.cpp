@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
     PrintConfig(cfg);
 
     auto hist = LoadSpectrum(cfg);
+    hist->SetTitle("");
 
     FitModel model(cfg, true);
     FitModel no_interference_model(cfg, false);

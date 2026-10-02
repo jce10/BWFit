@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <set>
 #include <stdexcept>
 
 namespace bwfit {
@@ -114,19 +115,76 @@ FitConfig ReadConfig(const std::string& path) {
   }
 
   cfg.states.resize(num_states);
+  std::string state_label;
+  input >> state_label;
   for (int i = 0; i < num_states; ++i) {
-    int is_bw = 0, fit_M = 0, fit_G = 0;
-    input >> label; // STATEi
-    ReadLabeled(input, cfg.states[i].fac);
-    ReadLabeled(input, cfg.states[i].M);
-    ReadLabeled(input, cfg.states[i].G);
-    ReadLabeled(input, is_bw);
-    ReadLabeled(input, fit_M);
-    ReadLabeled(input, fit_G);
-    cfg.states[i].is_bw = (is_bw != 0);
-    cfg.states[i].fit_M = (fit_M != 0);
-    cfg.states[i].fit_G = (fit_G != 0);
+    const std::string expected = "STATE" + std::to_string(i);
+    // Preserve positional state indexing used by old cards, including cards
+    // whose printed STATE labels are duplicated or out of sequence.
+    if (state_label.compare(0, 5, "STATE") != 0)
+      throw std::runtime_error("Expected a STATE block, found " + state_label);
+
+    auto& st = cfg.states[i];
+    st.M_range = -1.0; // Omitted: retain the legacy full-fit-window limits.
+    std::set<std::string> seen;
+    state_label.clear();
+    std::string key;
+    while (input >> key) {
+      if (key[0] == '#') {
+        std::string comment;
+        std::getline(input, comment);
+        continue;
+      }
+      if (key.compare(0, 5, "STATE") == 0) {
+        state_label = key;
+        break;
+      }
+      if (!key.empty() && key.back() == ':') key.pop_back();
+      if (key != "FAC" && key != "M" && key != "M_RANGE" && key != "G" &&
+          key != "IS_BW" && key != "FIT_M" && key != "FIT_G")
+        throw std::runtime_error(expected + ": unknown field " + key);
+      if (!seen.insert(key).second)
+        throw std::runtime_error(expected + ": duplicate field " + key);
+
+      std::string token;
+      if (!(input >> token))
+        throw std::runtime_error(expected + ": missing value for " + key);
+      std::size_t used = 0;
+      double value = 0.0;
+      try { value = std::stod(token, &used); }
+      catch (const std::exception&) {
+        throw std::runtime_error(expected + ": invalid value for " + key + ": " + token);
+      }
+      if (used != token.size() || !std::isfinite(value))
+        throw std::runtime_error(expected + ": invalid value for " + key + ": " + token);
+      if (key == "FAC") st.fac = value;
+      else if (key == "M") st.M = value;
+      else if (key == "G") st.G = value;
+      else if (key == "M_RANGE") {
+        if (value <= 0.0)
+          throw std::runtime_error(expected + ": M_RANGE must be positive (MeV); omit it for legacy limits");
+        st.M_range = value;
+      }
+      else {
+        if (std::trunc(value) != value)
+          throw std::runtime_error(expected + ": " + key + " must be an integer");
+        if (key == "IS_BW") st.is_bw = (value != 0.0);
+        else if (key == "FIT_M") st.fit_M = (value != 0.0);
+        else st.fit_G = (value != 0.0);
+      }
+    }
+    for (const char* required : {"FAC", "M", "G", "IS_BW", "FIT_M", "FIT_G"})
+      if (!seen.count(required))
+        throw std::runtime_error(expected + ": missing field " + required);
+    if (st.fit_M && st.M_range > 0.0) {
+      const double lo = std::max(cfg.fitmin, st.M - st.M_range);
+      const double hi = std::min(cfg.fitmax, st.M + st.M_range);
+      if (!(lo < hi) || st.M < lo || st.M > hi)
+        throw std::runtime_error(expected + ": centroid range/start is incompatible with FITMIN/FITMAX");
+    }
   }
+  if (!state_label.empty())
+    throw std::runtime_error("Unexpected extra state: " + state_label);
 
   return cfg;
 }
@@ -147,6 +205,20 @@ void PrintConfig(const FitConfig& cfg) {
             << "  PHASE = " << cfg.phase.value * 2.0 / M_PI
             << " * pi/2 [" << (cfg.fit_phase ? "FLOAT" : "FIXED") << "]\n"
             << "  BACKGROUND_TYPE = " << ToString(cfg.background_type) << "\n";
+
+  for (int i = 0; i < static_cast<int>(cfg.states.size()); ++i) {
+    const auto& st = cfg.states[i];
+    std::cout << "  STATE" << i << " centroid: ";
+    if (!st.fit_M) {
+      std::cout << "FIXED at " << st.M << " MeV\n";
+    } else {
+      const double lo = st.M_range > 0.0 ? std::max(cfg.fitmin, st.M - st.M_range) : cfg.fitmin;
+      const double hi = st.M_range > 0.0 ? std::min(cfg.fitmax, st.M + st.M_range) : cfg.fitmax;
+      std::cout << "FLOAT in [" << lo << ", " << hi << "] MeV";
+      if (st.M_range > 0.0) std::cout << " (M_RANGE = +/-" << st.M_range << " MeV)";
+      std::cout << "\n";
+    }
+  }
 
   if (cfg.background_type == BackgroundType::Linear) {
     std::cout << "  BG(E)=A0+A1(E-E0)\n"

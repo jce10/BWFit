@@ -125,16 +125,16 @@ def plot_parameter(
         #     label=f"{label}: set",
         # )
 
-    # ax.set_xlabel(r"$\theta_{\mathrm{lab}}$ (deg)")
-    ax.set_xlabel(r"fit range")
-    ax.set_ylabel(ylabel)
-    ax.set_title(title)
+    ax.set_xlabel(r"$\theta_{\mathrm{lab}}$ (deg)", fontsize=16)
+    # ax.set_xlabel(r"fit range")
+    ax.set_ylabel(ylabel, fontsize=16)
+    ax.set_title(title, fontsize=18)
     ax.grid(alpha=0.3)
 
     if log_y:
         ax.set_yscale("log")
 
-    ax.legend(fontsize=8, ncol=2)
+    # ax.legend(fontsize=12, ncol=9)
     fig.tight_layout()
     fig.savefig(output_path, dpi=300, bbox_inches="tight")
 
@@ -327,11 +327,11 @@ def main() -> None:
         log_y=args.log_counts,
     )
 
-    plot_upper_limit(
-        df,
-        output_path=args.output_dir / f"upper_limit_counts_vs_angle.{suffix}",
-        show=args.show,
-    )
+    # plot_upper_limit(
+    #     df,
+    #     output_path=args.output_dir / f"upper_limit_counts_vs_angle.{suffix}",
+    #     show=args.show,
+    # )
 
     plot_fit_quality(
         df,
