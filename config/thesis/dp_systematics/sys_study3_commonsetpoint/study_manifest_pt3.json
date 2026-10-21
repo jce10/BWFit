@@ -1,0 +1,781 @@
+{
+  "study": "common_intrinsic_resonance_systematic_pt3",
+  "angles_deg_lab": [
+    10,
+    15,
+    20,
+    45,
+    50
+  ],
+  "common_reference": {
+    "trapped": {
+      "FAC": 50,
+      "centroid_MeV": 7.65,
+      "width_MeV": 0.05
+    },
+    "superradiant": {
+      "FAC": 1500,
+      "centroid_MeV": 8.2,
+      "width_MeV": 1.1
+    }
+  },
+  "phase": {
+    "initial_pi_over_2_units": 0,
+    "P9_fixed_pi_over_2_units": 0,
+    "choice": "Shared zero reference selected for this package; not an angle-specific optimum.",
+    "interference_enabled": true
+  },
+  "gaussians": {
+    "centroids_and_widths": "ground-zero fit_result, fixed in every permutation",
+    "FAC_initial": "ground-zero fitted yield; remains free"
+  },
+  "background": {
+    "initial": "ground-zero fitted values",
+    "bounds": "ground-zero fit_config",
+    "E0": "fixed at 8 MeV",
+    "A0_A1": "free"
+  },
+  "preserved": [
+    "angle-specific ROOT/tree/branch",
+    "linear calibration",
+    "fit/full ranges",
+    "FITBINS and GRAPHPOINTS",
+    "nuisance state count",
+    "WIDTH_PERC",
+    "phase bounds"
+  ],
+  "bw_centroid_bounds": "original full fit window (no M_RANGE)",
+  "source_jsons": [
+    {
+      "filename": "10deg_optcon.json",
+      "sha256": "fe999709843774e4c4a1ad4c093b698048478d7cefc332fda88cec10d3b027b3"
+    },
+    {
+      "filename": "15deg_optcon.json",
+      "sha256": "05b24df0a1b77a7419a223f94264303cfa3463f801ce2877fa0f51817864dbfa"
+    },
+    {
+      "filename": "20deg_optcon.json",
+      "sha256": "77a5772866ef40e754888ac73cc25b238ab8aa336d6164d56429225248275824"
+    },
+    {
+      "filename": "45deg_optcon.json",
+      "sha256": "a05a591e5f5d07e281b22997502dd0ac519bb86110d538b6e9353f047575b16e"
+    },
+    {
+      "filename": "50deg_optcon.json",
+      "sha256": "50a3a9caa3431c902e1bad0f8130b1521266c03d6258763396b1f2cc4fab8a6b"
+    }
+  ],
+  "parser_reference": {
+    "repository": "https://github.com/jce10/BWFit",
+    "branch": "devel",
+    "commit": "11e43e7cbdbe8cb519f2c2481a15ab0ce054d8cf"
+  },
+  "permutations": [
+    {
+      "id": 1,
+      "name": "1freeCGD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "name": "2fixedC_freeGD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "name": "3freeC_fixedG_freeD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        1,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "name": "4fixedCG_freeD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "name": "5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "name": "6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "name": "7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        0,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "name": "8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "name": "9freeCG_fixedD_fixedGaussians_pt3",
+      "free_ET_GT_ES_GS_delta": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ]
+    }
+  ],
+  "fits": [
+    {
+      "permutation": 1,
+      "angle_deg": 10,
+      "name": "1freeCGD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/1freeCGD_fixedGaussians_pt3/10deg_1freeCGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/1freeCGD_fixedGaussians_pt3/10deg_1freeCGD_fixedGaussians_pt3.root",
+      "result_json": "results/1freeCGD_fixedGaussians_pt3/10deg_1freeCGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 1,
+      "angle_deg": 15,
+      "name": "1freeCGD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/1freeCGD_fixedGaussians_pt3/15deg_1freeCGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/1freeCGD_fixedGaussians_pt3/15deg_1freeCGD_fixedGaussians_pt3.root",
+      "result_json": "results/1freeCGD_fixedGaussians_pt3/15deg_1freeCGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 1,
+      "angle_deg": 20,
+      "name": "1freeCGD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/1freeCGD_fixedGaussians_pt3/20deg_1freeCGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/1freeCGD_fixedGaussians_pt3/20deg_1freeCGD_fixedGaussians_pt3.root",
+      "result_json": "results/1freeCGD_fixedGaussians_pt3/20deg_1freeCGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 1,
+      "angle_deg": 45,
+      "name": "1freeCGD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/1freeCGD_fixedGaussians_pt3/45deg_1freeCGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/1freeCGD_fixedGaussians_pt3/45deg_1freeCGD_fixedGaussians_pt3.root",
+      "result_json": "results/1freeCGD_fixedGaussians_pt3/45deg_1freeCGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 1,
+      "angle_deg": 50,
+      "name": "1freeCGD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/1freeCGD_fixedGaussians_pt3/50deg_1freeCGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/1freeCGD_fixedGaussians_pt3/50deg_1freeCGD_fixedGaussians_pt3.root",
+      "result_json": "results/1freeCGD_fixedGaussians_pt3/50deg_1freeCGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 2,
+      "angle_deg": 10,
+      "name": "2fixedC_freeGD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/2fixedC_freeGD_fixedGaussians_pt3/10deg_2fixedC_freeGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/2fixedC_freeGD_fixedGaussians_pt3/10deg_2fixedC_freeGD_fixedGaussians_pt3.root",
+      "result_json": "results/2fixedC_freeGD_fixedGaussians_pt3/10deg_2fixedC_freeGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 2,
+      "angle_deg": 15,
+      "name": "2fixedC_freeGD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/2fixedC_freeGD_fixedGaussians_pt3/15deg_2fixedC_freeGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/2fixedC_freeGD_fixedGaussians_pt3/15deg_2fixedC_freeGD_fixedGaussians_pt3.root",
+      "result_json": "results/2fixedC_freeGD_fixedGaussians_pt3/15deg_2fixedC_freeGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 2,
+      "angle_deg": 20,
+      "name": "2fixedC_freeGD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/2fixedC_freeGD_fixedGaussians_pt3/20deg_2fixedC_freeGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/2fixedC_freeGD_fixedGaussians_pt3/20deg_2fixedC_freeGD_fixedGaussians_pt3.root",
+      "result_json": "results/2fixedC_freeGD_fixedGaussians_pt3/20deg_2fixedC_freeGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 2,
+      "angle_deg": 45,
+      "name": "2fixedC_freeGD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/2fixedC_freeGD_fixedGaussians_pt3/45deg_2fixedC_freeGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/2fixedC_freeGD_fixedGaussians_pt3/45deg_2fixedC_freeGD_fixedGaussians_pt3.root",
+      "result_json": "results/2fixedC_freeGD_fixedGaussians_pt3/45deg_2fixedC_freeGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 2,
+      "angle_deg": 50,
+      "name": "2fixedC_freeGD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/2fixedC_freeGD_fixedGaussians_pt3/50deg_2fixedC_freeGD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/2fixedC_freeGD_fixedGaussians_pt3/50deg_2fixedC_freeGD_fixedGaussians_pt3.root",
+      "result_json": "results/2fixedC_freeGD_fixedGaussians_pt3/50deg_2fixedC_freeGD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 3,
+      "angle_deg": 10,
+      "name": "3freeC_fixedG_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/3freeC_fixedG_freeD_fixedGaussians_pt3/10deg_3freeC_fixedG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/3freeC_fixedG_freeD_fixedGaussians_pt3/10deg_3freeC_fixedG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/3freeC_fixedG_freeD_fixedGaussians_pt3/10deg_3freeC_fixedG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 3,
+      "angle_deg": 15,
+      "name": "3freeC_fixedG_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/3freeC_fixedG_freeD_fixedGaussians_pt3/15deg_3freeC_fixedG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/3freeC_fixedG_freeD_fixedGaussians_pt3/15deg_3freeC_fixedG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/3freeC_fixedG_freeD_fixedGaussians_pt3/15deg_3freeC_fixedG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 3,
+      "angle_deg": 20,
+      "name": "3freeC_fixedG_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/3freeC_fixedG_freeD_fixedGaussians_pt3/20deg_3freeC_fixedG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/3freeC_fixedG_freeD_fixedGaussians_pt3/20deg_3freeC_fixedG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/3freeC_fixedG_freeD_fixedGaussians_pt3/20deg_3freeC_fixedG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 3,
+      "angle_deg": 45,
+      "name": "3freeC_fixedG_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/3freeC_fixedG_freeD_fixedGaussians_pt3/45deg_3freeC_fixedG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/3freeC_fixedG_freeD_fixedGaussians_pt3/45deg_3freeC_fixedG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/3freeC_fixedG_freeD_fixedGaussians_pt3/45deg_3freeC_fixedG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 3,
+      "angle_deg": 50,
+      "name": "3freeC_fixedG_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/3freeC_fixedG_freeD_fixedGaussians_pt3/50deg_3freeC_fixedG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/3freeC_fixedG_freeD_fixedGaussians_pt3/50deg_3freeC_fixedG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/3freeC_fixedG_freeD_fixedGaussians_pt3/50deg_3freeC_fixedG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 4,
+      "angle_deg": 10,
+      "name": "4fixedCG_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/4fixedCG_freeD_fixedGaussians_pt3/10deg_4fixedCG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/4fixedCG_freeD_fixedGaussians_pt3/10deg_4fixedCG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/4fixedCG_freeD_fixedGaussians_pt3/10deg_4fixedCG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 4,
+      "angle_deg": 15,
+      "name": "4fixedCG_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/4fixedCG_freeD_fixedGaussians_pt3/15deg_4fixedCG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/4fixedCG_freeD_fixedGaussians_pt3/15deg_4fixedCG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/4fixedCG_freeD_fixedGaussians_pt3/15deg_4fixedCG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 4,
+      "angle_deg": 20,
+      "name": "4fixedCG_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/4fixedCG_freeD_fixedGaussians_pt3/20deg_4fixedCG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/4fixedCG_freeD_fixedGaussians_pt3/20deg_4fixedCG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/4fixedCG_freeD_fixedGaussians_pt3/20deg_4fixedCG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 4,
+      "angle_deg": 45,
+      "name": "4fixedCG_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/4fixedCG_freeD_fixedGaussians_pt3/45deg_4fixedCG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/4fixedCG_freeD_fixedGaussians_pt3/45deg_4fixedCG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/4fixedCG_freeD_fixedGaussians_pt3/45deg_4fixedCG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 4,
+      "angle_deg": 50,
+      "name": "4fixedCG_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/4fixedCG_freeD_fixedGaussians_pt3/50deg_4fixedCG_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/4fixedCG_freeD_fixedGaussians_pt3/50deg_4fixedCG_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/4fixedCG_freeD_fixedGaussians_pt3/50deg_4fixedCG_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 5,
+      "angle_deg": 10,
+      "name": "5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/10deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/10deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/10deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 5,
+      "angle_deg": 15,
+      "name": "5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/15deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/15deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/15deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 5,
+      "angle_deg": 20,
+      "name": "5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/20deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/20deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/20deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 5,
+      "angle_deg": 45,
+      "name": "5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/45deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/45deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/45deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 5,
+      "angle_deg": 50,
+      "name": "5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/50deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/50deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3/50deg_5freeET_fixedGT_ES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 6,
+      "angle_deg": 10,
+      "name": "6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/10deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/10deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/10deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 6,
+      "angle_deg": 15,
+      "name": "6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/15deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/15deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/15deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 6,
+      "angle_deg": 20,
+      "name": "6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/20deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/20deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/20deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 6,
+      "angle_deg": 45,
+      "name": "6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/45deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/45deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/45deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 6,
+      "angle_deg": 50,
+      "name": "6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 1,
+      "free_ES": 0,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/50deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/50deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3/50deg_6fixedET_freeGT_fixedES_GS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 7,
+      "angle_deg": 10,
+      "name": "7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/10deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/10deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/10deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 7,
+      "angle_deg": 15,
+      "name": "7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/15deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/15deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/15deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 7,
+      "angle_deg": 20,
+      "name": "7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/20deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/20deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/20deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 7,
+      "angle_deg": 45,
+      "name": "7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/45deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/45deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/45deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 7,
+      "angle_deg": 50,
+      "name": "7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 1,
+      "free_GS": 0,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/50deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/50deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3/50deg_7fixedET_GT_freeES_fixedGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 8,
+      "angle_deg": 10,
+      "name": "8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/10deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/10deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/10deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 8,
+      "angle_deg": 15,
+      "name": "8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/15deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/15deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/15deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 8,
+      "angle_deg": 20,
+      "name": "8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/20deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/20deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/20deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 8,
+      "angle_deg": 45,
+      "name": "8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/45deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/45deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/45deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 8,
+      "angle_deg": 50,
+      "name": "8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3",
+      "free_ET": 0,
+      "free_GT": 0,
+      "free_ES": 0,
+      "free_GS": 1,
+      "free_delta": 1,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/50deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/50deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.root",
+      "result_json": "results/8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3/50deg_8fixedET_GT_ES_freeGS_freeD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 9,
+      "angle_deg": 10,
+      "name": "9freeCG_fixedD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 0,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/9freeCG_fixedD_fixedGaussians_pt3/10deg_9freeCG_fixedD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/9freeCG_fixedD_fixedGaussians_pt3/10deg_9freeCG_fixedD_fixedGaussians_pt3.root",
+      "result_json": "results/9freeCG_fixedD_fixedGaussians_pt3/10deg_9freeCG_fixedD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 9,
+      "angle_deg": 15,
+      "name": "9freeCG_fixedD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 0,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/9freeCG_fixedD_fixedGaussians_pt3/15deg_9freeCG_fixedD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/9freeCG_fixedD_fixedGaussians_pt3/15deg_9freeCG_fixedD_fixedGaussians_pt3.root",
+      "result_json": "results/9freeCG_fixedD_fixedGaussians_pt3/15deg_9freeCG_fixedD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 9,
+      "angle_deg": 20,
+      "name": "9freeCG_fixedD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 0,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/9freeCG_fixedD_fixedGaussians_pt3/20deg_9freeCG_fixedD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/9freeCG_fixedD_fixedGaussians_pt3/20deg_9freeCG_fixedD_fixedGaussians_pt3.root",
+      "result_json": "results/9freeCG_fixedD_fixedGaussians_pt3/20deg_9freeCG_fixedD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 9,
+      "angle_deg": 45,
+      "name": "9freeCG_fixedD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 0,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/9freeCG_fixedD_fixedGaussians_pt3/45deg_9freeCG_fixedD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/9freeCG_fixedD_fixedGaussians_pt3/45deg_9freeCG_fixedD_fixedGaussians_pt3.root",
+      "result_json": "results/9freeCG_fixedD_fixedGaussians_pt3/45deg_9freeCG_fixedD_fixedGaussians_pt3.json"
+    },
+    {
+      "permutation": 9,
+      "angle_deg": 50,
+      "name": "9freeCG_fixedD_fixedGaussians_pt3",
+      "free_ET": 1,
+      "free_GT": 1,
+      "free_ES": 1,
+      "free_GS": 1,
+      "free_delta": 0,
+      "card": "config/thesis/dp_systematics/sys_study3_commonsetpoint/9freeCG_fixedD_fixedGaussians_pt3/50deg_9freeCG_fixedD_fixedGaussians_pt3.txt",
+      "output_root": "outputs/9freeCG_fixedD_fixedGaussians_pt3/50deg_9freeCG_fixedD_fixedGaussians_pt3.root",
+      "result_json": "results/9freeCG_fixedD_fixedGaussians_pt3/50deg_9freeCG_fixedD_fixedGaussians_pt3.json"
+    }
+  ],
+  "config_directory": "config/thesis/dp_systematics/sys_study3_commonsetpoint",
+  "changes_from_pt2": [
+    "State3 FAC 100 -> 50",
+    "State3 G 0.060 -> 0.050 MeV",
+    "State4 FAC 2000 -> 1500",
+    "Names and ROOT/JSON outputs use pt3",
+    "Self-locating runners under sys_study3_commonsetpoint"
+  ],
+  "floating_width_bounds_MeV": {
+    "trapped": [
+      0,
+      0.1
+    ],
+    "superradiant": [
+      0,
+      2.2
+    ]
+  }
+}
